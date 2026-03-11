@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import {
@@ -6,21 +6,21 @@ import {
   Github, Linkedin, Mail, Download,
   ChevronRight, Briefcase, GraduationCap,
   User, Send, ExternalLink, MessageSquareQuote,
-  Award, Star, Menu, X, Sun, Moon, Phone,
+  Award, Star, Menu, X, Sun, Moon, Phone, MapPin,
 } from 'lucide-react'
 import { ImageWithFallback } from './ImageWithFallback'
 
-// ─── Translations ─────────────────────────────────────────────────────────────
+// --- Translations -------------------------------------------------------------
 const t = {
   es: {
-    nav: ['Sobre mí', 'Experiencia', 'Certificaciones', 'Proyectos', 'Stack', 'Testimonios', 'Visión', 'Contacto'],
+    nav: ['Sobre mí', 'Stack', 'Proyectos', 'Experiencia', 'Certificaciones', 'Testimonios', 'Visión', 'Contacto'],
     welcome: '~/bienvenidos a mi portafolio',
     role: 'Ingeniero de Software',
     university: 'Universidad Cooperativa de Colombia',
     tagline: 'Comprometido con transformar ideas complejas en experiencias web interactivas y escalables.',
     downloadCV: 'Descargar CV',
     viewProjects: 'Ver proyectos',
-    aboutTitle: '02. Acerca de Mí',
+    aboutTitle: '01. Acerca de Mí',
     profileTitle: 'PERFIL PROFESIONAL',
     profileItems: [
       'Soy un <strong>desarrollador en formación</strong> enfocado en construir software robusto y eficiente.',
@@ -38,7 +38,7 @@ const t = {
     techSkills: 'Habilidades Técnicas',
     softSkills: 'Habilidades Blandas',
     softSkillsList: ['🤝 Trabajo en equipo','💬 Comunicación efectiva','🧩 Resolución de problemas','⏱ Gestión del tiempo','🔄 Adaptabilidad','📚 Aprendizaje continuo','🎯 Orientado a resultados','🗂 Metodologías ágiles','🧠 Pensamiento analítico','🤔 Pensamiento crítico'],
-    expTitle: '03. Experiencia Académica y Laboral',
+    expTitle: '04. Experiencia Académica y Laboral',
     exp: [
       {
         badge: 'Académico (Actualidad)',
@@ -65,7 +65,7 @@ const t = {
         ],
       },
     ],
-    projectsTitle: '04. Mis Proyectos',
+    projectsTitle: '03. Mis Proyectos',
     projects: [
       { title: 'MusicON', desc: 'Reproductor de música MP3 con interfaz fluida tipo "liquid". Permite subir archivos MP3, gestionar una lista de reproducción y disfrutar de una experiencia visual inmersiva.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
       { title: 'Aerotickets', desc: 'Sistema de reservas de vuelos con búsqueda de rutas, selección de asientos y gestión de pasajeros. Interfaz moderna e intuitiva para simular una aerolínea real.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
@@ -75,13 +75,14 @@ const t = {
       { title: 'Cálculo Multivariable', desc: 'Aplicativo interactivo para cálculo multivariable con visualizaciones 3D, gradientes, integrales dobles y triples. Desarrollado con Python y Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
     ],
     code: 'Código', demo: 'Demo', comingSoon: 'Próximamente',
-    testimonialsTitle: '05. Testimonios',
+    testimonialsTitle: '06. Testimonios',
     testimonials: [
-      { quote: '"Steven tiene un gran talento para resolver problemas complejos. Entregó el proyecto antes del plazo acordado y el código era muy limpio y fácil de mantener."', name: 'Laura Gómez', role: 'Project Manager / Tech Corp' },
-      { quote: '"Excelente estudiante y profesional. Trabajamos en una integración de bases de datos que superó nuestras expectativas en rendimiento."', name: 'Carlos Ruiz', role: 'CTO / InnovaTech' },
-      { quote: '"Su dedicación por aprender e implementar nuevas herramientas es asombrosa. La interfaz que construyó es super intuitiva y a nuestros usuarios les encantó."', name: 'Ana Martínez', role: 'Diseñadora UI/UX' },
+      { quote: '"Trabajar con Steven fue una experiencia muy positiva. Tiene una gran capacidad para entender los problemas rápidamente y proponer soluciones claras y efectivas. Se nota su interés por aprender constantemente y mejorar en cada proyecto."', name: 'Ingrid Lizeth Insuasti', role: 'Colega / Colaboradora' },
+      { quote: '"Steven es una persona muy dedicada al desarrollo de software. Algo que valoro mucho es su capacidad para explicar ideas complejas de manera sencilla. Es alguien confiable, organizado y enfocado en entregar resultados de calidad."', name: 'Martin Alejandro Melo', role: 'Desarrollador / Colega' },
+      { quote: '"Steven tiene una excelente actitud para el trabajo en equipo. Sabe escuchar, aportar ideas y adaptarse a diferentes situaciones. Sin duda, es alguien en quien se puede confiar para sacar adelante cualquier desarrollo."', name: 'Jose Arnovi Agudelo', role: 'Compañero de equipo' },
+      { quote: '"Me impresionó la creatividad de Steven al momento de diseñar y desarrollar soluciones. No solo se enfoca en que funcione, sino en que sea intuitivo y bien estructurado. Es una persona comprometida con muy buena ética de trabajo."', name: 'Michael Andres Ordoñez', role: 'Colaborador / Proyecto' },
     ],
-    certsTitle: '06. Certificaciones',
+    certsTitle: '05. Certificaciones',
     certs: [
       { title: 'Desarrollo Web Frontend', issuer: 'Meta / Coursera', date: 'Sept 2023' },
       { title: 'Bases de Datos con SQL', issuer: 'Universidad Cooperativa', date: 'Mar 2023' },
@@ -90,7 +91,7 @@ const t = {
       { title: 'JavaScript Moderno', issuer: 'Juan Pablo de la Torre — Udemy', date: '2024' },
       { title: 'Algoritmos y Estructuras de Datos en JS', issuer: 'FreeCodeCamp', date: '2024' },
     ],
-    stackTitle: '05. Stack Tecnológico',
+    stackTitle: '02. Stack Tecnológico',
     stackSubtitle: 'Tecnologías y herramientas con las que trabajo día a día.',
     goalsTitle: '07. Visión Profesional',
     goalsSubtitle: '¿Qué busco y hacia dónde voy?',
@@ -109,16 +110,15 @@ const t = {
     linkedinDesc: 'Conectemos y hablemos de tecnología.',
     githubDesc: 'Revisa mis repositorios y código.',
     footerText: 'Todos los derechos reservados.',
-  },
-  en: {
-    nav: ['About', 'Experience', 'Certifications', 'Projects', 'Stack', 'Testimonials', 'Vision', 'Contact'],
+  },  en: {
+    nav: ['About', 'Stack', 'Projects', 'Experience', 'Certifications', 'Testimonials', 'Vision', 'Contact'],
     welcome: '~/welcome to my portfolio',
     role: 'Software Engineer',
     university: 'Cooperative University of Colombia',
     tagline: 'Committed to transforming complex ideas into interactive and scalable web experiences.',
     downloadCV: 'Download CV',
     viewProjects: 'View projects',
-    aboutTitle: '02. About Me',
+    aboutTitle: '01. About Me',
     profileTitle: 'PROFESSIONAL PROFILE',
     profileItems: [
       'I am a <strong>developer in training</strong> focused on building robust and efficient software.',
@@ -135,8 +135,8 @@ const t = {
     ],
     techSkills: 'Technical Skills',
     softSkills: 'Soft Skills',
-    softSkillsList: ['🤝 Teamwork','💬 Effective communication','🧩 Problem solving','⏱ Time management','🔄 Adaptability','📚 Continuous learning','🎯 Results-oriented','🗂 Agile methodologies','🧠 Analytical thinking','🤔 Critical thinking'],
-    expTitle: '03. Academic & Work Experience',
+    softSkillsList: ['?? Teamwork','?? Effective communication','?? Problem solving','? Time management','?? Adaptability','?? Continuous learning','?? Results-oriented','?? Agile methodologies','?? Analytical thinking','?? Critical thinking'],
+    expTitle: '04. Academic & Work Experience',
     exp: [
       {
         badge: 'Academic (Current)',
@@ -163,7 +163,7 @@ const t = {
         ],
       },
     ],
-    projectsTitle: '04. My Projects',
+    projectsTitle: '03. My Projects',
     projects: [
       { title: 'MusicON', desc: 'MP3 music player with a fluid "liquid" interface. Upload MP3 files, manage a playlist and enjoy an immersive visual experience.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
       { title: 'Aerotickets', desc: 'Flight booking system with route search, seat selection and passenger management. Modern and intuitive interface simulating a real airline.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
@@ -173,13 +173,14 @@ const t = {
       { title: 'Multivariable Calculus', desc: 'Interactive app for multivariable calculus with 3D visualizations, gradients, double and triple integrals. Built with Python and Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
     ],
     code: 'Code', demo: 'Demo', comingSoon: 'Coming soon',
-    testimonialsTitle: '05. Testimonials',
+    testimonialsTitle: '06. Testimonials',
     testimonials: [
-      { quote: '"Steven has a great talent for solving complex problems. He delivered the project ahead of schedule and the code was very clean and easy to maintain."', name: 'Laura Gómez', role: 'Project Manager / Tech Corp' },
-      { quote: '"Excellent student and professional. We worked on a database integration that exceeded our performance expectations."', name: 'Carlos Ruiz', role: 'CTO / InnovaTech' },
-      { quote: '"His dedication to learning and implementing new tools is amazing. The interface he built is super intuitive and our users loved it."', name: 'Ana Martínez', role: 'UI/UX Designer' },
+      { quote: '"Working with Steven was a very positive experience. He has a great ability to quickly understand problems and propose clear and effective solutions. His interest in constantly learning and improving in every project is evident."', name: 'Ingrid Lizeth Insuasti', role: 'Colleague / Collaborator' },
+      { quote: '"Steven is a very dedicated software developer. Something I value greatly is his ability to explain complex ideas in a simple way. He is reliable, organized and focused on delivering quality results."', name: 'Martin Alejandro Melo', role: 'Developer / Colleague' },
+      { quote: '"Steven has an excellent attitude for teamwork. He knows how to listen, contribute ideas and adapt to different situations. He is definitely someone you can trust to move any development forward."', name: 'Jose Arnovi Agudelo', role: 'Team Member' },
+      { quote: '"I was impressed by Steven\'s creativity when designing and developing solutions. He not only focuses on making it work, but on making it intuitive and well-structured. He is a committed person with a very good work ethic."', name: 'Michael Andres Ordoñez', role: 'Collaborator / Project' },
     ],
-    certsTitle: '06. Certifications',
+    certsTitle: '05. Certifications',
     certs: [
       { title: 'Frontend Web Development', issuer: 'Meta / Coursera', date: 'Sept 2023' },
       { title: 'Databases with SQL', issuer: 'Universidad Cooperativa', date: 'Mar 2023' },
@@ -188,15 +189,15 @@ const t = {
       { title: 'Modern JavaScript', issuer: 'Juan Pablo de la Torre — Udemy', date: '2024' },
       { title: 'Algorithms & Data Structures in JS', issuer: 'FreeCodeCamp', date: '2024' },
     ],
-    stackTitle: '05. Tech Stack',
+    stackTitle: '02. Tech Stack',
     stackSubtitle: 'Technologies and tools I work with on a daily basis.',
     goalsTitle: '07. Professional Vision',
     goalsSubtitle: 'What I am looking for and where I am headed.',
     goals: [
-      { icon: '🎯', title: 'Role I am seeking', desc: 'Join as a Junior Frontend or Fullstack Developer in a team where I can contribute real solutions, learn from experienced professionals and grow within an agile and collaborative environment.' },
-      { icon: '🚀', title: 'Technical growth', desc: 'Deepen my knowledge in scalable software architectures, cloud computing (AWS / GCP) and DevOps best practices. My goal is to become an engineer capable of designing robust systems end to end.' },
-      { icon: '🤝', title: 'Team contribution', desc: 'I bring commitment, fast learning ability and a results-oriented mindset. I adapt easily to new environments and enjoy working in teams to solve complex problems.' },
-      { icon: '🌍', title: 'Long-term vision', desc: "Participate in high-impact projects, ideally with international reach, where technology bridges the gap to improve people's lives. I aspire to lead technical teams in the future." },
+      { icon: '??', title: 'Role I am seeking', desc: 'Join as a Junior Frontend or Fullstack Developer in a team where I can contribute real solutions, learn from experienced professionals and grow within an agile and collaborative environment.' },
+      { icon: '??', title: 'Technical growth', desc: 'Deepen my knowledge in scalable software architectures, cloud computing (AWS / GCP) and DevOps best practices. My goal is to become an engineer capable of designing robust systems end to end.' },
+      { icon: '??', title: 'Team contribution', desc: 'I bring commitment, fast learning ability and a results-oriented mindset. I adapt easily to new environments and enjoy working in teams to solve complex problems.' },
+      { icon: '??', title: 'Long-term vision', desc: "Participate in high-impact projects, ideally with international reach, where technology bridges the gap to improve people's lives. I aspire to lead technical teams in the future." },
     ],
     contactTitle: '08. Contact',
     sendMsg: 'Send me a message',
@@ -210,7 +211,7 @@ const t = {
   },
 }
 
-const navIds = ['sobre-mi', 'experiencia', 'certificaciones', 'proyectos', 'stack', 'testimonios', 'objetivos', 'contacto']
+const navIds = ['sobre-mi', 'stack', 'proyectos', 'experiencia', 'certificaciones', 'testimonios', 'objetivos', 'contacto']
 
 const techSkillsList = [
   { label: 'JavaScript / TypeScript', pct: 65 },
@@ -223,7 +224,7 @@ const techSkillsList = [
 ]
 
 const projectImgs = [
-  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
   'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
   'https://images.unsplash.com/photo-1501139083538-0139583c060f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
   'https://images.unsplash.com/photo-1472851294608-062f824d29cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
@@ -245,7 +246,7 @@ const testimonialImgs = [
 ]
 const certColors = ['bg-[#bfdbfe]', 'bg-[#fef08a]', 'bg-[#bfdbfe]']
 
-// ─── Stack data ───────────────────────────────────────────────────────────────
+// --- Stack data ---------------------------------------------------------------
 const stackCategories = [
   {
     icon: <Code2 size={20} />,
@@ -281,7 +282,7 @@ const stackCategories = [
   },
 ]
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// --- Component ----------------------------------------------------------------
 export default function Portfolio() {
   const [lang, setLang] = useState<'es' | 'en'>('es')
   const [dark, setDark] = useState(false)
@@ -291,7 +292,7 @@ export default function Portfolio() {
 
   const tr = t[lang]
 
-  // ── Theme tokens ──────────────────────────────────────────────────────────
+  // -- Theme tokens ----------------------------------------------------------
   const bg      = dark
     ? 'bg-[#0f0f0f] bg-[radial-gradient(#2a2a2a_1.5px,transparent_1.5px)] [background-size:24px_24px] text-[#f0f0f0]'
     : 'bg-[#fafafa] bg-[radial-gradient(#d1d5db_1.5px,transparent_1.5px)] [background-size:24px_24px] text-[#0f0f0f]'
@@ -308,7 +309,7 @@ export default function Portfolio() {
     </div>
   )
 
-  // ── Scroll helper ─────────────────────────────────────────────────────────
+  // -- Scroll helper ---------------------------------------------------------
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
@@ -317,7 +318,7 @@ export default function Portfolio() {
     setIsMobileMenuOpen(false)
   }
 
-  // ── Form ──────────────────────────────────────────────────────────────────
+  // -- Form ------------------------------------------------------------------
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setFormSent(true)
@@ -325,20 +326,20 @@ export default function Portfolio() {
     setTimeout(() => setFormSent(false), 4000)
   }
 
-  // ── Nav icon helpers ──────────────────────────────────────────────────────
+  // -- Nav icon helpers ------------------------------------------------------
   const navIcons = [User, Briefcase, Award, ExternalLink, Code2, MessageSquareQuote, Star, Mail]
 
   return (
     <div className={`min-h-screen font-sans selection:bg-[#fef08a] ${bg}`}>
 
-      {/* ── Toast ── */}
+      {/* -- Toast -- */}
       {formSent && (
         <div className="fixed bottom-6 right-6 z-[100] bg-[#fef08a] text-[#0f0f0f] px-5 py-3 rounded-xl shadow-lg font-semibold text-sm animate-bounce">
-          ✅ {lang === 'es' ? 'Mensaje enviado correctamente' : 'Message sent successfully'}
+          ? {lang === 'es' ? 'Mensaje enviado correctamente' : 'Message sent successfully'}
         </div>
       )}
 
-      {/* ── Mobile top bar ── */}
+      {/* -- Mobile top bar -- */}
       <div className={`lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b-2 ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#fafafa]'}`}>
         <button onClick={() => scrollToSection('inicio')} className="flex items-center gap-2">
           <ImageWithFallback src="/logo.png" alt="Logo" width={28} height={28} className="rounded" />
@@ -367,7 +368,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ── Mobile dropdown menu ── */}
+      {/* -- Mobile dropdown menu -- */}
       {isMobileMenuOpen && (
         <div className={`lg:hidden fixed top-[53px] left-0 right-0 z-40 border-b-2 ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#fafafa]'} shadow-lg`}>
           <nav className="flex flex-col py-2">
@@ -384,13 +385,13 @@ export default function Portfolio() {
         </div>
       )}
 
-      {/* ── Layout wrapper ── */}
+      {/* -- Layout wrapper -- */}
       <div className="flex min-h-screen">
 
-        {/* ── Sidebar (desktop only) ── */}
+        {/* -- Sidebar (desktop only) -- */}
         <aside className="hidden lg:flex flex-col fixed right-0 top-0 h-full w-[160px] z-50">
-          {/* Background with blur */}
-          <div className={`absolute inset-0 backdrop-blur-md border-l ${dark ? 'bg-[#0a0a0a]/80 border-gray-800' : 'bg-white/80 border-gray-200'}`} />
+          {/* Always dark background */}
+          <div className="absolute inset-0 bg-[#0a0a0a] border-l border-gray-800" />
 
           <div className="relative flex flex-col h-full z-10 py-4 px-3">
 
@@ -398,43 +399,31 @@ export default function Portfolio() {
             <div className="flex justify-center mb-4">
               <button onClick={() => scrollToSection('inicio')} aria-label="Home"
                 className="group relative transition-all duration-300 hover:scale-110 active:scale-95">
-                <div className="absolute inset-0 rounded-2xl bg-[#6366f1] blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-                <div className={`relative p-1.5 rounded-2xl border-2 ${dark ? 'border-gray-600 bg-[#111]' : 'border-gray-300 bg-white'} shadow-lg group-hover:border-[#6366f1] transition-colors duration-300`}>
+                <div className="absolute inset-0 rounded-2xl bg-[#6366f1] blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                <div className="relative p-1.5 rounded-2xl border-2 border-gray-700 bg-[#111] shadow-lg group-hover:border-[#6366f1] transition-colors duration-300">
                   <ImageWithFallback src="/logo.png" alt="Logo" className="w-11 h-11 rounded-xl" />
                 </div>
               </button>
             </div>
 
-            {/* Nav links — distributed evenly */}
-            <nav className="flex flex-col flex-1 justify-around">
+            {/* Nav links */}
+            <nav className="flex flex-col flex-1 justify-around gap-1">
               {navIds.map((id, i) => {
                 const accents = [
-                  { bg: '#fef08a', shadow: '254,240,138' },
-                  { bg: '#fecaca', shadow: '254,202,202' },
-                  { bg: '#d8b4fe', shadow: '216,180,254' },
-                  { bg: '#e9d5ff', shadow: '233,213,255' },
-                  { bg: '#bfdbfe', shadow: '191,219,254' },
-                  { bg: '#fed7aa', shadow: '253,215,170' },
-                  { bg: '#bfdbfe', shadow: '191,219,254' },
-                  { bg: '#a7f3d0', shadow: '167,243,208' },
+                  '#fef08a', '#fecaca', '#d8b4fe', '#e9d5ff',
+                  '#bfdbfe', '#fed7aa', '#bfdbfe', '#a7f3d0',
                 ]
                 const a = accents[i]
+                const radius = i % 2 === 0
+                  ? 'rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md'
+                  : 'rounded-tr-2xl rounded-bl-2xl rounded-tl-md rounded-br-md'
                 return (
                   <button
                     key={id}
                     onClick={() => scrollToSection(id)}
-                    className={`group relative w-full py-2 px-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 overflow-hidden ${dark ? 'text-gray-500' : 'text-gray-400'}`}
+                    className={`group relative w-full py-2 px-3 text-[10px] font-black uppercase tracking-widest text-center text-gray-500 border border-gray-800 overflow-hidden transition-all duration-200 hover:border-transparent hover:scale-[1.03] ${radius}`}
                   >
-                    {/* Animated fill on hover */}
-                    <span
-                      className="absolute inset-0 rounded-xl scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"
-                      style={{ backgroundColor: a.bg }}
-                    />
-                    {/* Glow */}
-                    <span
-                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-40 blur-sm transition-opacity duration-200"
-                      style={{ backgroundColor: a.bg }}
-                    />
+                    <span className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200" style={{ backgroundColor: a }} />
                     <span className="relative group-hover:text-black transition-colors duration-200">{tr.nav[i]}</span>
                   </button>
                 )
@@ -444,11 +433,11 @@ export default function Portfolio() {
             {/* Controls */}
             <div className="flex justify-center gap-2 pt-3">
               <button onClick={() => setDark(!dark)}
-                className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 border ${dark ? 'bg-[#1a1a1a] border-gray-700 text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]' : 'bg-gray-100 border-gray-200 text-gray-500 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]'}`}>
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 border border-gray-700 bg-[#1a1a1a] text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]">
                 {dark ? <Sun size={14} /> : <Moon size={14} />}
               </button>
               <button onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-                className={`w-9 h-9 rounded-xl text-[10px] font-black flex items-center justify-center transition-all duration-200 border ${dark ? 'bg-[#1a1a1a] border-gray-700 text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]' : 'bg-gray-100 border-gray-200 text-gray-500 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]'}`}>
+                className="w-9 h-9 rounded-xl text-[10px] font-black flex items-center justify-center transition-all duration-200 border border-gray-700 bg-[#1a1a1a] text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]">
                 {lang === 'es' ? 'EN' : 'ES'}
               </button>
             </div>
@@ -456,12 +445,12 @@ export default function Portfolio() {
           </div>
         </aside>
 
-        {/* ── Main content ── */}
+        {/* -- Main content -- */}
         <main className="flex-1 lg:mr-[160px] pt-[53px] lg:pt-0">
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
               HERO
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="inicio" className={`min-h-screen border-b-2 ${border} mb-24 relative overflow-hidden`}>
 
             {/* Floating code snippets — decorative background */}
@@ -496,23 +485,28 @@ export default function Portfolio() {
             {/* Main 3-col grid */}
             <div className="w-full grid grid-cols-1 md:grid-cols-3 min-h-screen px-6 py-12 gap-6 relative z-10">
 
-              {/* ── Col 1: name + role + stack badges ── */}
-              <div className="flex flex-col gap-4 justify-between py-4">
-                <div className="flex flex-col gap-3">
-                  <span className="inline-block bg-[#fef08a] text-[#0f0f0f] text-xs font-bold px-3 py-1 rounded-full w-fit">
-                    {tr.welcome}
-                  </span>
-                  <div className="mt-6">
-                    <h1 className="text-5xl md:text-6xl xl:text-7xl font-black tracking-tight leading-none">
-                      Steven<br />Eraso<br />Insuasti
-                    </h1>
-                    <p className="text-xl font-semibold mt-3">{tr.role}</p>
-                    <p className={`text-sm ${muted} flex items-center gap-2 mt-1`}>
-                      <GraduationCap size={16} />
-                      {tr.university}
-                    </p>
-                  </div>
+              {/* -- Col 1: name + role + stack badges -- */}
+              <div className="flex flex-col justify-between py-4">
+                {/* Badge — stays at top */}
+                <span className="inline-block bg-[#fef08a] text-[#0f0f0f] text-xs font-bold px-3 py-1 rounded-full w-fit">
+                  {tr.welcome}
+                </span>
+
+                {/* Name block — pushed down */}
+                <div className="flex flex-col gap-3 mt-auto mb-auto pt-8">
+                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-tight"
+                    style={{ fontFamily: "'Syne', sans-serif" }}>
+                    Steven<br />Eraso<br />Insuasti
+                  </h1>
+                  <p className="text-xl font-semibold mt-1">{tr.role}</p>
+                  <p className={`text-sm ${muted} flex items-center gap-2`}>
+                    <GraduationCap size={16} />
+                    {tr.university}
+                  </p>
                 </div>
+
+                {/* Divider */}
+                <div className={`h-px w-full ${dark ? 'bg-gray-800' : 'bg-gray-200'}`} />
 
                 {/* Stack badges */}
                 <div>
@@ -539,7 +533,7 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* ── Col 2: photo full height ── */}
+              {/* -- Col 2: photo full height -- */}
               <div className="flex justify-center items-stretch py-4">
                 <div className={`relative w-full rounded-2xl overflow-hidden border-4 ${border} shadow-xl`} style={{minHeight: '70vh'}}>
                   <ImageWithFallback
@@ -550,7 +544,7 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* ── Col 3: tagline + buttons + stats ── */}
+              {/* -- Col 3: tagline + buttons + stats -- */}
               <div className="flex flex-col gap-5 justify-between py-4 pr-16">
                 {/* Top space aligned with social icons height (~4 icons * ~52px = ~210px) */}
                 <div>
@@ -559,7 +553,7 @@ export default function Portfolio() {
                     {tr.tagline}
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <a href="#" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
+                    <a href="/cv.pdf" download="CV-Steven-Eraso-Insuasti.pdf" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
                       <Download size={16} />{tr.downloadCV}
                     </a>
                     <button onClick={() => scrollToSection('proyectos')}
@@ -594,9 +588,9 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
               SOBRE MÍ
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="sobre-mi" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               {sectionTitle(tr.aboutTitle, 'bg-[#fef08a]')}
@@ -681,63 +675,40 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
-              EXPERIENCIA
-          ════════════════════════════════════════════════════════════════ */}
-          <section id="experiencia" className="mb-24 scroll-mt-24">
+          {/* ----------------------------------------------------------------
+              STACK
+          ---------------------------------------------------------------- */}
+          <section id="stack" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
-              {sectionTitle(tr.expTitle, 'bg-[#fecaca]')}
-              <div className="space-y-6">
-                {tr.exp.map((item, i) => (
+              {sectionTitle(tr.stackTitle, 'bg-[#bbf7d0]')}
+              <p className={`text-sm ${muted} mb-8`}>{tr.stackSubtitle}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {stackCategories.map((cat, i) => (
                   <div key={i} className={`rounded-2xl border-2 p-6 ${box}`}>
-                    <div className="flex flex-wrap items-start gap-3 mb-3">
-                      <span className="text-xs font-bold bg-[#fef08a] text-[#0f0f0f] px-3 py-1 rounded-full">
-                        {item.badge}
-                      </span>
-                      <div>
-                        <h3 className="font-bold text-lg leading-tight">{item.title}</h3>
-                        <p className={`text-sm ${muted}`}>{item.sub}</p>
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-9 h-9 rounded-lg bg-[#bfdbfe] text-[#0f0f0f] flex items-center justify-center">
+                        {cat.icon}
                       </div>
+                      <h3 className="font-bold">{cat.title}</h3>
                     </div>
-                    <p className={`text-sm mb-4 ${muted}`}>{item.desc}</p>
-                    <ul className="space-y-2">
-                      {item.bullets.map((b, j) => (
-                        <li key={j} className="flex gap-2 text-sm">
-                          <ChevronRight size={16} className="mt-0.5 shrink-0 text-[#6366f1]" />
-                          {b}
-                        </li>
+                    <div className="grid grid-cols-2 gap-2">
+                      {cat.items.map((item) => (
+                        <div key={item.name} className={`flex items-center gap-2 p-2 rounded-xl border ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={item.icon} alt={item.name} className="w-6 h-6 shrink-0" />
+                          <span className="text-xs font-semibold truncate">{item.name}</span>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ════════════════════════════════════════════════════════════════
-              CERTIFICACIONES
-          ════════════════════════════════════════════════════════════════ */}
-          <section id="certificaciones" className="mb-24 scroll-mt-24">
-            <div className="max-w-7xl mx-auto px-6">
-              {sectionTitle(tr.certsTitle, 'bg-[#d8b4fe]')}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {tr.certs.map((cert, i) => (
-                  <div key={i} className={`rounded-2xl border-2 p-5 ${box} flex flex-col gap-2`}>
-                    <div className={`w-8 h-8 rounded-lg ${certColors[i % certColors.length]} flex items-center justify-center`}>
-                      <Award size={16} className="text-[#0f0f0f]" />
                     </div>
-                    <p className="font-semibold text-sm leading-snug">{cert.title}</p>
-                    <p className={`text-xs ${muted}`}>{cert.issuer}</p>
-                    <p className={`text-xs font-bold ${muted}`}>{cert.date}</p>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
               PROYECTOS
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="proyectos" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               {sectionTitle(tr.projectsTitle, 'bg-[#e9d5ff]')}
@@ -787,70 +758,93 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
-              STACK
-          ════════════════════════════════════════════════════════════════ */}
-          <section id="stack" className="mb-24 scroll-mt-24">
+          {/* ----------------------------------------------------------------
+              EXPERIENCIA
+          ---------------------------------------------------------------- */}
+          <section id="experiencia" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
-              {sectionTitle(tr.stackTitle, 'bg-[#bbf7d0]')}
-              <p className={`text-sm ${muted} mb-8`}>{tr.stackSubtitle}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {stackCategories.map((cat, i) => (
+              {sectionTitle(tr.expTitle, 'bg-[#fecaca]')}
+              <div className="space-y-6">
+                {tr.exp.map((item, i) => (
                   <div key={i} className={`rounded-2xl border-2 p-6 ${box}`}>
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-9 h-9 rounded-lg bg-[#bfdbfe] text-[#0f0f0f] flex items-center justify-center">
-                        {cat.icon}
+                    <div className="flex flex-wrap items-start gap-3 mb-3">
+                      <span className="text-xs font-bold bg-[#fef08a] text-[#0f0f0f] px-3 py-1 rounded-full">
+                        {item.badge}
+                      </span>
+                      <div>
+                        <h3 className="font-bold text-lg leading-tight">{item.title}</h3>
+                        <p className={`text-sm ${muted}`}>{item.sub}</p>
                       </div>
-                      <h3 className="font-bold">{cat.title}</h3>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {cat.items.map((item) => (
-                        <div key={item.name} className={`flex items-center gap-2 p-2 rounded-xl border ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={item.icon} alt={item.name} className="w-6 h-6 shrink-0" />
-                          <span className="text-xs font-semibold truncate">{item.name}</span>
-                        </div>
+                    <p className={`text-sm mb-4 ${muted}`}>{item.desc}</p>
+                    <ul className="space-y-2">
+                      {item.bullets.map((b, j) => (
+                        <li key={j} className="flex gap-2 text-sm">
+                          <ChevronRight size={16} className="mt-0.5 shrink-0 text-[#6366f1]" />
+                          {b}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
+              CERTIFICACIONES
+          ---------------------------------------------------------------- */}
+          <section id="certificaciones" className="mb-24 scroll-mt-24">
+            <div className="max-w-7xl mx-auto px-6">
+              {sectionTitle(tr.certsTitle, 'bg-[#d8b4fe]')}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {tr.certs.map((cert, i) => (
+                  <div key={i} className={`rounded-2xl border-2 p-5 ${box} flex flex-col gap-2`}>
+                    <div className={`w-8 h-8 rounded-lg ${certColors[i % certColors.length]} flex items-center justify-center`}>
+                      <Award size={16} className="text-[#0f0f0f]" />
+                    </div>
+                    <p className="font-semibold text-sm leading-snug">{cert.title}</p>
+                    <p className={`text-xs ${muted}`}>{cert.issuer}</p>
+                    <p className={`text-xs font-bold ${muted}`}>{cert.date}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ----------------------------------------------------------------
               TESTIMONIOS
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="testimonios" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               {sectionTitle(tr.testimonialsTitle, 'bg-[#fed7aa]')}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {tr.testimonials.map((t, i) => (
-                  <div key={i} className={`rounded-2xl border-2 p-6 ${box} flex flex-col gap-4`}>
-                    <MessageSquareQuote size={24} className="text-[#6366f1]" />
-                    <p className={`text-sm leading-relaxed italic ${muted}`}>{t.quote}</p>
-                    <div className="flex items-center gap-3 mt-auto">
-                      <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#bbf7d0] shrink-0">
-                        <ImageWithFallback
-                          src={testimonialImgs[i]}
-                          alt={t.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm">{t.name}</p>
-                        <p className={`text-xs ${muted}`}>{t.role}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {tr.testimonials.map((t, i) => {
+                  const initials = t.name.split(' ').slice(0,2).map(n => n[0]).join('')
+                  const colors = ['bg-[#fef08a]', 'bg-[#bfdbfe]', 'bg-[#fecaca]', 'bg-[#d8b4fe]']
+                  return (
+                    <div key={i} className={`rounded-2xl border-2 p-6 ${box} flex flex-col gap-4`}>
+                      <MessageSquareQuote size={24} className="text-[#6366f1]" />
+                      <p className={`text-sm leading-relaxed italic flex-1 ${muted}`}>{t.quote}</p>
+                      <div className="flex items-center gap-3 mt-auto pt-3 border-t border-current/10">
+                        <div className={`w-10 h-10 rounded-full ${colors[i]} flex items-center justify-center shrink-0 font-black text-sm text-black`}>
+                          {initials}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">{t.name}</p>
+                          <p className={`text-xs ${muted}`}>{t.role}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
               OBJETIVOS / VISIÓN
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="objetivos" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               {sectionTitle(tr.goalsTitle, 'bg-[#bfdbfe]')}
@@ -878,9 +872,9 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* ════════════════════════════════════════════════════════════════
+          {/* ----------------------------------------------------------------
               CONTACTO
-          ════════════════════════════════════════════════════════════════ */}
+          ---------------------------------------------------------------- */}
           <section id="contacto" className="mb-24 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               {sectionTitle(tr.contactTitle, 'bg-[#a7f3d0]')}
@@ -991,7 +985,7 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* ── Footer ── */}
+          {/* -- Footer -- */}
           <footer className="bg-[#0f0f0f] text-white mt-auto">
             <div className="max-w-7xl mx-auto px-6 py-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
@@ -1066,7 +1060,7 @@ export default function Portfolio() {
                       <a href="https://wa.me/573017824030" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+57 301 782 4030</a>
                     </li>
                     <li className="flex items-center gap-3 mt-2">
-                      <span className="text-xs font-mono text-green-400">📍</span>
+                      <MapPin size={14} className="shrink-0 text-green-400" />
                       <span>Pasto, Nariño, Colombia</span>
                     </li>
                   </ul>
@@ -1074,16 +1068,10 @@ export default function Portfolio() {
               </div>
 
               {/* Bottom bar */}
-              <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+              <div className="border-t border-gray-800 pt-6 flex items-center justify-center">
                 <p className="text-xs text-gray-500">
                   © {new Date().getFullYear()} Steven Eraso Insuasti — {tr.footerText}
                 </p>
-                <div className="flex items-center gap-2 text-xs text-gray-600">
-                  <span>Built with</span>
-                  <span className="px-2 py-0.5 border border-gray-700 text-gray-400">Next.js</span>
-                  <span className="px-2 py-0.5 border border-gray-700 text-gray-400">TypeScript</span>
-                  <span className="px-2 py-0.5 border border-gray-700 text-gray-400">Tailwind</span>
-                </div>
               </div>
             </div>
           </footer>
@@ -1093,4 +1081,9 @@ export default function Portfolio() {
     </div>
   )
 }
+
+
+
+
+
 
