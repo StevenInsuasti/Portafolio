@@ -68,8 +68,11 @@ const t = {
     projectsTitle: '04. Mis Proyectos',
     projects: [
       { title: 'MusicON', desc: 'Reproductor de música MP3 con interfaz fluida tipo "liquid". Permite subir archivos MP3, gestionar una lista de reproducción y disfrutar de una experiencia visual inmersiva.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
-      { title: 'Dashboard Admin', desc: 'Sistema de gestión de inventario con base de datos relacional y gráficos interactivos.', github: 'https://github.com/StevenInsuasti', demo: '' },
-      { title: 'Gestor de Tareas Móvil', desc: 'Aplicación web progresiva enfocada en la productividad personal con recordatorios y notificaciones.', github: 'https://github.com/StevenInsuasti', demo: '' },
+      { title: 'Aerotickets', desc: 'Sistema de reservas de vuelos con búsqueda de rutas, selección de asientos y gestión de pasajeros. Interfaz moderna e intuitiva para simular una aerolínea real.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
+      { title: 'Reloj Análogo', desc: 'Reloj analógico interactivo con manecillas animadas en tiempo real y sistema de alarma configurable. Desarrollado con JavaScript puro.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app' },
+      { title: 'Clon Mercado Libre', desc: 'Clon funcional de Mercado Libre con listado de productos, búsqueda y carrito de compras. Proyecto de práctica para dominar HTML, CSS y JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit' },
+      { title: 'YoJobs', desc: 'Red social profesional inspirada en LinkedIn. Permite registro de usuarios, creación de perfil, publicación de ofertas laborales y conexión entre profesionales.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register' },
+      { title: 'Cálculo Multivariable', desc: 'Aplicativo interactivo para cálculo multivariable con visualizaciones 3D, gradientes, integrales dobles y triples. Desarrollado con Python y Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
     ],
     code: 'Código', demo: 'Demo', comingSoon: 'Próximamente',
     testimonialsTitle: '05. Testimonios',
@@ -163,8 +166,11 @@ const t = {
     projectsTitle: '04. My Projects',
     projects: [
       { title: 'MusicON', desc: 'MP3 music player with a fluid "liquid" interface. Upload MP3 files, manage a playlist and enjoy an immersive visual experience.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
-      { title: 'Admin Dashboard', desc: 'Inventory management system with relational database and interactive charts.', github: 'https://github.com/StevenInsuasti', demo: '' },
-      { title: 'Mobile Task Manager', desc: 'Progressive web app focused on personal productivity with reminders and notifications.', github: 'https://github.com/StevenInsuasti', demo: '' },
+      { title: 'Aerotickets', desc: 'Flight booking system with route search, seat selection and passenger management. Modern and intuitive interface simulating a real airline.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
+      { title: 'Analog Clock', desc: 'Interactive analog clock with real-time animated hands and configurable alarm system. Built with vanilla JavaScript.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app' },
+      { title: 'MercadoLibre Clone', desc: 'Functional clone of MercadoLibre with product listing, search and shopping cart. Practice project to master HTML, CSS and JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit' },
+      { title: 'YoJobs', desc: 'Professional social network inspired by LinkedIn. Allows user registration, profile creation, job posting and professional networking.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register' },
+      { title: 'Multivariable Calculus', desc: 'Interactive app for multivariable calculus with 3D visualizations, gradients, double and triple integrals. Built with Python and Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
     ],
     code: 'Code', demo: 'Demo', comingSoon: 'Coming soon',
     testimonialsTitle: '05. Testimonials',
@@ -218,13 +224,19 @@ const techSkillsList = [
 
 const projectImgs = [
   'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
-  'https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGV8ZW58MXx8fHwxNzc0MzEwNjg4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ24lMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzc0MjgzOTk0fDA&ixlib=rb-4.1.0&q=80&w=1080',
+  'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  'https://images.unsplash.com/photo-1472851294608-062f824d29cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+  'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
 ]
 const projectTags = [
   [{ label: 'React', color: 'bg-[#bfdbfe]' }, { label: 'JavaScript', color: 'bg-[#fef08a]' }],
-  [{ label: 'Python', color: 'bg-[#fef08a]' }, { label: 'SQL', color: 'bg-[#fecaca]' }],
-  [{ label: 'React', color: 'bg-[#e9d5ff]' }, { label: 'Tailwind', color: 'bg-[#f8fafc]' }],
+  [{ label: 'React', color: 'bg-[#bfdbfe]' }, { label: 'Node.js', color: 'bg-[#bbf7d0]' }],
+  [{ label: 'JavaScript', color: 'bg-[#fef08a]' }, { label: 'CSS3', color: 'bg-[#bfdbfe]' }],
+  [{ label: 'HTML', color: 'bg-[#fecaca]' }, { label: 'JavaScript', color: 'bg-[#fef08a]' }],
+  [{ label: 'React', color: 'bg-[#bfdbfe]' }, { label: 'Node.js', color: 'bg-[#bbf7d0]' }],
+  [{ label: 'Python', color: 'bg-[#fef08a]' }, { label: 'Streamlit', color: 'bg-[#e9d5ff]' }],
 ]
 const testimonialImgs = [
   'https://images.unsplash.com/photo-1649589244330-09ca58e4fa64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc3NDE5MzY5NXww&ixlib=rb-4.1.0&q=80&w=1080',
