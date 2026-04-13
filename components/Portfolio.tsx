@@ -67,11 +67,11 @@ const t = {
     ],
     projectsTitle: '04. Mis Proyectos',
     projects: [
-      { title: 'Plataforma E-commerce', desc: 'Desarrollo de una tienda virtual responsiva con carrito de compras y panel de administración.' },
-      { title: 'Dashboard Admin', desc: 'Sistema de gestión de inventario con base de datos relacional y gráficos interactivos.' },
-      { title: 'Gestor de Tareas Móvil', desc: 'Aplicación web progresiva enfocada en la productividad personal con recordatorios y notificaciones.' },
+      { title: 'MusicON', desc: 'Reproductor de música MP3 con interfaz fluida tipo "liquid". Permite subir archivos MP3, gestionar una lista de reproducción y disfrutar de una experiencia visual inmersiva.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
+      { title: 'Dashboard Admin', desc: 'Sistema de gestión de inventario con base de datos relacional y gráficos interactivos.', github: 'https://github.com/StevenInsuasti', demo: '' },
+      { title: 'Gestor de Tareas Móvil', desc: 'Aplicación web progresiva enfocada en la productividad personal con recordatorios y notificaciones.', github: 'https://github.com/StevenInsuasti', demo: '' },
     ],
-    code: 'Código', demo: 'Demo',
+    code: 'Código', demo: 'Demo', comingSoon: 'Próximamente',
     testimonialsTitle: '05. Testimonios',
     testimonials: [
       { quote: '"Steven tiene un gran talento para resolver problemas complejos. Entregó el proyecto antes del plazo acordado y el código era muy limpio y fácil de mantener."', name: 'Laura Gómez', role: 'Project Manager / Tech Corp' },
@@ -162,11 +162,11 @@ const t = {
     ],
     projectsTitle: '04. My Projects',
     projects: [
-      { title: 'E-commerce Platform', desc: 'Development of a responsive online store with shopping cart and admin panel.' },
-      { title: 'Admin Dashboard', desc: 'Inventory management system with relational database and interactive charts.' },
-      { title: 'Mobile Task Manager', desc: 'Progressive web app focused on personal productivity with reminders and notifications.' },
+      { title: 'MusicON', desc: 'MP3 music player with a fluid "liquid" interface. Upload MP3 files, manage a playlist and enjoy an immersive visual experience.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
+      { title: 'Admin Dashboard', desc: 'Inventory management system with relational database and interactive charts.', github: 'https://github.com/StevenInsuasti', demo: '' },
+      { title: 'Mobile Task Manager', desc: 'Progressive web app focused on personal productivity with reminders and notifications.', github: 'https://github.com/StevenInsuasti', demo: '' },
     ],
-    code: 'Code', demo: 'Demo',
+    code: 'Code', demo: 'Demo', comingSoon: 'Coming soon',
     testimonialsTitle: '05. Testimonials',
     testimonials: [
       { quote: '"Steven has a great talent for solving complex problems. He delivered the project ahead of schedule and the code was very clean and easy to maintain."', name: 'Laura Gómez', role: 'Project Manager / Tech Corp' },
@@ -217,12 +217,12 @@ const techSkillsList = [
 ]
 
 const projectImgs = [
+  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
   'https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGV8ZW58MXx8fHwxNzc0MzEwNjg4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  'https://images.unsplash.com/photo-1721593979313-8661afd501c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhYmFzZSUyMGRhc2hib2FyZHxlbnwxfHx8fDE3NzQzMTA2ODh8MA&ixlib=rb-4.1.0&q=80&w=1080',
   'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ24lMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzc0MjgzOTk0fDA&ixlib=rb-4.1.0&q=80&w=1080',
 ]
 const projectTags = [
-  [{ label: 'React', color: 'bg-[#bfdbfe]' }, { label: 'Node', color: 'bg-[#bfdbfe]' }],
+  [{ label: 'React', color: 'bg-[#bfdbfe]' }, { label: 'JavaScript', color: 'bg-[#fef08a]' }],
   [{ label: 'Python', color: 'bg-[#fef08a]' }, { label: 'SQL', color: 'bg-[#fecaca]' }],
   [{ label: 'React', color: 'bg-[#e9d5ff]' }, { label: 'Tailwind', color: 'bg-[#f8fafc]' }],
 ]
@@ -735,16 +735,22 @@ export default function Portfolio() {
                       <p className={`text-sm ${muted} flex-1`}>{project.desc}</p>
                       <div className="flex gap-3 mt-2">
                         <a
-                          href="https://github.com/StevenInsuasti"
+                          href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border ${border} hover:bg-[#fef08a] hover:text-[#0f0f0f] transition-colors`}
                         >
                           <Github size={13} /> {tr.code}
                         </a>
-                        <button className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg ${btn} transition-colors`}>
-                          <ExternalLink size={13} /> {tr.demo}
-                        </button>
+                        {project.demo
+                          ? <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg ${btn} transition-colors`}>
+                              <ExternalLink size={13} /> {tr.demo}
+                            </a>
+                          : <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border ${border} opacity-40 cursor-not-allowed`}>
+                              <ExternalLink size={13} /> {tr.comingSoon}
+                            </span>
+                        }
                       </div>
                     </div>
                   </div>
