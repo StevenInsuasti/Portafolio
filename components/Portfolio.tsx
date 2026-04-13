@@ -840,15 +840,24 @@ export default function Portfolio() {
               {sectionTitle(tr.goalsTitle, 'bg-[#bfdbfe]')}
               <p className={`text-sm ${muted} mb-8`}>{tr.goalsSubtitle}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {tr.goals.map((goal, i) => (
-                  <div key={i} className={`rounded-2xl border-2 p-6 ${box} flex gap-4`}>
-                    <span className="text-2xl shrink-0">{goal.icon}</span>
-                    <div>
-                      <h3 className="font-bold mb-2">{goal.title}</h3>
-                      <p className={`text-sm leading-relaxed ${muted}`}>{goal.desc}</p>
+                {tr.goals.map((goal, i) => {
+                  const icons8 = [
+                    'https://img.icons8.com/pulsar-color/50/job.png',
+                    'https://img.icons8.com/pulsar-color/50/growth.png',
+                    'https://img.icons8.com/pulsar-color/50/conference-call.png',
+                    'https://img.icons8.com/pulsar-color/50/rocket.png',
+                  ]
+                  return (
+                    <div key={i} className={`rounded-2xl border-2 p-6 ${box} flex gap-4`}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={icons8[i]} alt={goal.title} className="w-12 h-12 shrink-0" />
+                      <div>
+                        <h3 className="font-bold mb-2">{goal.title}</h3>
+                        <p className={`text-sm leading-relaxed ${muted}`}>{goal.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </section>
