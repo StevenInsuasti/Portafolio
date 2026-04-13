@@ -389,54 +389,70 @@ export default function Portfolio() {
 
         {/* ── Sidebar (desktop only) ── */}
         <aside className="hidden lg:flex flex-col fixed right-0 top-0 h-full w-[160px] z-50">
-          {/* Logo */}
-          <div className="flex items-center justify-center pt-6 pb-4">
-            <button onClick={() => scrollToSection('inicio')} aria-label="Home"
-              className="transition-transform duration-200 hover:scale-110 hover:-rotate-3 active:scale-95 p-1 rounded-2xl border-2 border-gray-600 bg-[#0f0f0f] shadow-[0_0_12px_rgba(99,102,241,0.4)]">
-              <ImageWithFallback src="/logo.png" alt="Logo" className="w-12 h-12 rounded-xl" />
-            </button>
-          </div>
+          {/* Background with blur */}
+          <div className={`absolute inset-0 backdrop-blur-md border-l ${dark ? 'bg-[#0a0a0a]/80 border-gray-800' : 'bg-white/80 border-gray-200'}`} />
 
-          {/* Nav links — floating pills */}
-          <nav className="flex flex-col flex-1 items-center gap-1.5 py-2 overflow-hidden">
-            {navIds.map((id, i) => {
-              const hoverColors = [
-                'hover:bg-[#fef08a] hover:text-black hover:shadow-[0_0_10px_rgba(254,240,138,0.6)]',
-                'hover:bg-[#fecaca] hover:text-black hover:shadow-[0_0_10px_rgba(254,202,202,0.6)]',
-                'hover:bg-[#d8b4fe] hover:text-black hover:shadow-[0_0_10px_rgba(216,180,254,0.6)]',
-                'hover:bg-[#e9d5ff] hover:text-black hover:shadow-[0_0_10px_rgba(233,213,255,0.6)]',
-                'hover:bg-[#bfdbfe] hover:text-black hover:shadow-[0_0_10px_rgba(191,219,254,0.6)]',
-                'hover:bg-[#fed7aa] hover:text-black hover:shadow-[0_0_10px_rgba(253,215,170,0.6)]',
-                'hover:bg-[#bfdbfe] hover:text-black hover:shadow-[0_0_10px_rgba(191,219,254,0.6)]',
-                'hover:bg-[#a7f3d0] hover:text-black hover:shadow-[0_0_10px_rgba(167,243,208,0.6)]',
-              ]
-              return (
-                <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  className={`w-[140px] py-2 px-3 text-[10px] font-black uppercase tracking-widest text-center text-gray-400 bg-[#1a1a1a] border border-gray-700 rounded-xl transition-all duration-200 hover:scale-105 hover:border-transparent ${hoverColors[i]}`}
-                >
-                  {tr.nav[i]}
-                </button>
-              )
-            })}
-          </nav>
+          <div className="relative flex flex-col h-full z-10 py-4 px-3">
 
-          {/* Dark + Lang at bottom — floating */}
-          <div className="flex flex-col items-center gap-2 pb-6 pt-2">
-            <button
-              onClick={() => setDark(!dark)}
-              title={dark ? 'Light mode' : 'Dark mode'}
-              className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-transparent hover:shadow-[0_0_10px_rgba(254,240,138,0.5)] transition-all"
-            >
-              {dark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button
-              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-              className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-gray-700 text-xs font-bold text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-transparent hover:shadow-[0_0_10px_rgba(254,240,138,0.5)] transition-all"
-            >
-              {lang === 'es' ? 'EN' : 'ES'}
-            </button>
+            {/* Logo */}
+            <div className="flex justify-center mb-4">
+              <button onClick={() => scrollToSection('inicio')} aria-label="Home"
+                className="group relative transition-all duration-300 hover:scale-110 active:scale-95">
+                <div className="absolute inset-0 rounded-2xl bg-[#6366f1] blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                <div className={`relative p-1.5 rounded-2xl border-2 ${dark ? 'border-gray-600 bg-[#111]' : 'border-gray-300 bg-white'} shadow-lg group-hover:border-[#6366f1] transition-colors duration-300`}>
+                  <ImageWithFallback src="/logo.png" alt="Logo" className="w-11 h-11 rounded-xl" />
+                </div>
+              </button>
+            </div>
+
+            {/* Nav links — distributed evenly */}
+            <nav className="flex flex-col flex-1 justify-around">
+              {navIds.map((id, i) => {
+                const accents = [
+                  { bg: '#fef08a', shadow: '254,240,138' },
+                  { bg: '#fecaca', shadow: '254,202,202' },
+                  { bg: '#d8b4fe', shadow: '216,180,254' },
+                  { bg: '#e9d5ff', shadow: '233,213,255' },
+                  { bg: '#bfdbfe', shadow: '191,219,254' },
+                  { bg: '#fed7aa', shadow: '253,215,170' },
+                  { bg: '#bfdbfe', shadow: '191,219,254' },
+                  { bg: '#a7f3d0', shadow: '167,243,208' },
+                ]
+                const a = accents[i]
+                return (
+                  <button
+                    key={id}
+                    onClick={() => scrollToSection(id)}
+                    className={`group relative w-full py-2 px-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 overflow-hidden ${dark ? 'text-gray-500' : 'text-gray-400'}`}
+                  >
+                    {/* Animated fill on hover */}
+                    <span
+                      className="absolute inset-0 rounded-xl scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200"
+                      style={{ backgroundColor: a.bg }}
+                    />
+                    {/* Glow */}
+                    <span
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-40 blur-sm transition-opacity duration-200"
+                      style={{ backgroundColor: a.bg }}
+                    />
+                    <span className="relative group-hover:text-black transition-colors duration-200">{tr.nav[i]}</span>
+                  </button>
+                )
+              })}
+            </nav>
+
+            {/* Controls */}
+            <div className="flex justify-center gap-2 pt-3">
+              <button onClick={() => setDark(!dark)}
+                className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 border ${dark ? 'bg-[#1a1a1a] border-gray-700 text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]' : 'bg-gray-100 border-gray-200 text-gray-500 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]'}`}>
+                {dark ? <Sun size={14} /> : <Moon size={14} />}
+              </button>
+              <button onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+                className={`w-9 h-9 rounded-xl text-[10px] font-black flex items-center justify-center transition-all duration-200 border ${dark ? 'bg-[#1a1a1a] border-gray-700 text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]' : 'bg-gray-100 border-gray-200 text-gray-500 hover:bg-[#fef08a] hover:text-black hover:border-[#fef08a]'}`}>
+                {lang === 'es' ? 'EN' : 'ES'}
+              </button>
+            </div>
+
           </div>
         </aside>
 
