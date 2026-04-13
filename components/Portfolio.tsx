@@ -388,52 +388,52 @@ export default function Portfolio() {
       <div className="flex min-h-screen">
 
         {/* ── Sidebar (desktop only) ── */}
-        <aside className={`hidden lg:flex flex-col fixed right-0 top-0 h-full w-[140px] z-50 border-l-2 border-gray-800 bg-[#0f0f0f] text-white`}>
+        <aside className="hidden lg:flex flex-col fixed right-0 top-0 h-full w-[160px] z-50">
           {/* Logo */}
-          <div className="flex items-center justify-center h-[72px] border-b-2 border-gray-800">
+          <div className="flex items-center justify-center pt-6 pb-4">
             <button onClick={() => scrollToSection('inicio')} aria-label="Home"
-              className="transition-transform duration-200 hover:scale-110 hover:-rotate-3 active:scale-95">
-              <ImageWithFallback src="/logo.png" alt="Logo" className="w-10 h-10 rounded drop-shadow-md hover:drop-shadow-xl transition-all" />
+              className="transition-transform duration-200 hover:scale-110 hover:-rotate-3 active:scale-95 p-1 rounded-2xl border-2 border-gray-600 bg-[#0f0f0f] shadow-[0_0_12px_rgba(99,102,241,0.4)]">
+              <ImageWithFallback src="/logo.png" alt="Logo" className="w-12 h-12 rounded-xl" />
             </button>
           </div>
 
-          {/* Nav links */}
-          <nav className="flex flex-col flex-1 overflow-hidden">
+          {/* Nav links — floating pills */}
+          <nav className="flex flex-col flex-1 items-center gap-1.5 py-2 overflow-hidden">
             {navIds.map((id, i) => {
-              const colors = [
-                'hover:bg-[#fef08a] hover:border-l-[#fef08a]',
-                'hover:bg-[#fecaca] hover:border-l-[#fecaca]',
-                'hover:bg-[#d8b4fe] hover:border-l-[#d8b4fe]',
-                'hover:bg-[#e9d5ff] hover:border-l-[#e9d5ff]',
-                'hover:bg-[#bfdbfe] hover:border-l-[#bfdbfe]',
-                'hover:bg-[#fed7aa] hover:border-l-[#fed7aa]',
-                'hover:bg-[#bfdbfe] hover:border-l-[#bfdbfe]',
-                'hover:bg-[#a7f3d0] hover:border-l-[#a7f3d0]',
+              const hoverColors = [
+                'hover:bg-[#fef08a] hover:text-black hover:shadow-[0_0_10px_rgba(254,240,138,0.6)]',
+                'hover:bg-[#fecaca] hover:text-black hover:shadow-[0_0_10px_rgba(254,202,202,0.6)]',
+                'hover:bg-[#d8b4fe] hover:text-black hover:shadow-[0_0_10px_rgba(216,180,254,0.6)]',
+                'hover:bg-[#e9d5ff] hover:text-black hover:shadow-[0_0_10px_rgba(233,213,255,0.6)]',
+                'hover:bg-[#bfdbfe] hover:text-black hover:shadow-[0_0_10px_rgba(191,219,254,0.6)]',
+                'hover:bg-[#fed7aa] hover:text-black hover:shadow-[0_0_10px_rgba(253,215,170,0.6)]',
+                'hover:bg-[#bfdbfe] hover:text-black hover:shadow-[0_0_10px_rgba(191,219,254,0.6)]',
+                'hover:bg-[#a7f3d0] hover:text-black hover:shadow-[0_0_10px_rgba(167,243,208,0.6)]',
               ]
               return (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`relative flex items-center px-4 py-0 text-xs font-black uppercase tracking-widest text-left border-b border-gray-800 border-l-4 border-l-transparent transition-all duration-200 hover:text-[#0f0f0f] hover:pl-5 text-gray-400 ${colors[i]}`}
-                  style={{flex: 1, minHeight: 0}}>
+                  className={`w-[140px] py-2 px-3 text-[10px] font-black uppercase tracking-widest text-center text-gray-400 bg-[#1a1a1a] border border-gray-700 rounded-xl transition-all duration-200 hover:scale-105 hover:border-transparent ${hoverColors[i]}`}
+                >
                   {tr.nav[i]}
                 </button>
               )
             })}
           </nav>
 
-          {/* Dark + Lang at bottom */}
-          <div className="flex flex-col items-center gap-2 pb-4 border-t-2 border-gray-800 pt-4">
+          {/* Dark + Lang at bottom — floating */}
+          <div className="flex flex-col items-center gap-2 pb-6 pt-2">
             <button
               onClick={() => setDark(!dark)}
               title={dark ? 'Light mode' : 'Dark mode'}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-700 transition-colors hover:bg-[#fef08a] hover:text-[#0f0f0f] bg-[#1a1a1a] text-gray-400"
+              className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-transparent hover:shadow-[0_0_10px_rgba(254,240,138,0.5)] transition-all"
             >
               {dark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <button
               onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-700 text-xs font-bold transition-colors hover:bg-[#fef08a] hover:text-[#0f0f0f] bg-[#1a1a1a] text-gray-400"
+              className="w-10 h-10 rounded-xl bg-[#1a1a1a] border border-gray-700 text-xs font-bold text-gray-400 hover:bg-[#fef08a] hover:text-black hover:border-transparent hover:shadow-[0_0_10px_rgba(254,240,138,0.5)] transition-all"
             >
               {lang === 'es' ? 'EN' : 'ES'}
             </button>
@@ -441,7 +441,7 @@ export default function Portfolio() {
         </aside>
 
         {/* ── Main content ── */}
-        <main className="flex-1 lg:mr-[140px] pt-[53px] lg:pt-0">
+        <main className="flex-1 lg:mr-[160px] pt-[53px] lg:pt-0">
 
           {/* ════════════════════════════════════════════════════════════════
               HERO
