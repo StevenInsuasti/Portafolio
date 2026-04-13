@@ -9,11 +9,13 @@ import {
   Award, Star, Menu, X, Sun, Moon, Phone, MapPin,
 } from 'lucide-react'
 import { ImageWithFallback } from './ImageWithFallback'
+import MetaballsBadge from './MetaballsBadge'
+import SidebarTrail from './SidebarTrail'
 
 // --- Translations -------------------------------------------------------------
 const t = {
   es: {
-    nav: ['Sobre mí', 'Stack', 'Proyectos', 'Experiencia', 'Certificaciones', 'Testimonios', 'Visión', 'Contacto'],
+    nav: ['Acerca de Mí', 'Stack', 'Proyectos', 'Experiencia', 'Certificaciones', 'Testimonios', 'Visión', 'Contacto'],
     welcome: '~/bienvenidos a mi portafolio',
     role: 'Ingeniero de Software',
     university: 'Universidad Cooperativa de Colombia',
@@ -84,12 +86,12 @@ const t = {
     ],
     certsTitle: '05. Certificaciones',
     certs: [
-      { title: 'Desarrollo Web Frontend', issuer: 'Meta / Coursera', date: 'Sept 2023' },
-      { title: 'Bases de Datos con SQL', issuer: 'Universidad Cooperativa', date: 'Mar 2023' },
-      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Ene 2024' },
-      { title: 'GitLab 101', issuer: 'GitLab University', date: '2024' },
-      { title: 'JavaScript Moderno', issuer: 'Juan Pablo de la Torre — Udemy', date: '2024' },
-      { title: 'Algoritmos y Estructuras de Datos en JS', issuer: 'FreeCodeCamp', date: '2024' },
+      { title: 'Desarrollo Web Frontend', issuer: 'Meta / Coursera', date: 'Mar 2024' },
+      { title: 'Bases de Datos con SQL', issuer: 'Universidad Cooperativa', date: 'Jun 2024' },
+      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Sep 2024' },
+      { title: 'GitLab 101', issuer: 'GitLab University', date: 'Nov 2024' },
+      { title: 'JavaScript Moderno', issuer: 'Juan Pablo de la Torre — Udemy', date: 'Ene 2025' },
+      { title: 'Algoritmos y Estructuras de Datos en JS', issuer: 'FreeCodeCamp', date: 'Mar 2025' },
     ],
     stackTitle: '02. Stack Tecnológico',
     stackSubtitle: 'Tecnologías y herramientas con las que trabajo día a día.',
@@ -182,12 +184,12 @@ const t = {
     ],
     certsTitle: '05. Certifications',
     certs: [
-      { title: 'Frontend Web Development', issuer: 'Meta / Coursera', date: 'Sept 2023' },
-      { title: 'Databases with SQL', issuer: 'Universidad Cooperativa', date: 'Mar 2023' },
-      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Jan 2024' },
-      { title: 'GitLab 101', issuer: 'GitLab University', date: '2024' },
-      { title: 'Modern JavaScript', issuer: 'Juan Pablo de la Torre — Udemy', date: '2024' },
-      { title: 'Algorithms & Data Structures in JS', issuer: 'FreeCodeCamp', date: '2024' },
+      { title: 'Frontend Web Development', issuer: 'Meta / Coursera', date: 'Mar 2024' },
+      { title: 'Databases with SQL', issuer: 'Universidad Cooperativa', date: 'Jun 2024' },
+      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Sep 2024' },
+      { title: 'GitLab 101', issuer: 'GitLab University', date: 'Nov 2024' },
+      { title: 'Modern JavaScript', issuer: 'Juan Pablo de la Torre — Udemy', date: 'Jan 2025' },
+      { title: 'Algorithms & Data Structures in JS', issuer: 'FreeCodeCamp', date: 'Mar 2025' },
     ],
     stackTitle: '02. Tech Stack',
     stackSubtitle: 'Technologies and tools I work with on a daily basis.',
@@ -289,7 +291,6 @@ export default function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [formSent, setFormSent] = useState(false)
-
   const tr = t[lang]
 
   // -- Theme tokens ----------------------------------------------------------
@@ -319,11 +320,48 @@ export default function Portfolio() {
   }
 
   // -- Form ------------------------------------------------------------------
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formError, setFormError] = useState(false)
+  const [formErrorMsg, setFormErrorMsg] = useState('')
+  const [formLoading, setFormLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setFormSent(true)
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setFormSent(false), 4000)
+    setFormError(false)
+    setFormErrorMsg('')
+
+    // Validación de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      setFormError(true)
+      setFormErrorMsg(lang === 'es' ? 'El correo electrónico no es válido.' : 'The email address is not valid.')
+      return
+    }
+
+    setFormLoading(true)
+    try {
+      const res = await fetch('https://formspree.io/f/xwvaekdb', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      })
+      if (res.ok) {
+        setFormSent(true)
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setFormSent(false), 3500)
+      } else {
+        setFormError(true)
+        setFormErrorMsg(lang === 'es' ? 'No se pudo enviar el mensaje. Intenta de nuevo.' : 'Could not send the message. Please try again.')
+      }
+    } catch {
+      setFormError(true)
+      setFormErrorMsg(lang === 'es' ? 'Error de conexión. Verifica tu internet.' : 'Connection error. Check your internet.')
+    } finally {
+      setFormLoading(false)
+    }
   }
 
   // -- Nav icon helpers ------------------------------------------------------
@@ -334,8 +372,27 @@ export default function Portfolio() {
 
       {/* -- Toast -- */}
       {formSent && (
-        <div className="fixed bottom-6 right-6 z-[100] bg-[#fef08a] text-[#0f0f0f] px-5 py-3 rounded-xl shadow-lg font-semibold text-sm animate-bounce">
-          ? {lang === 'es' ? 'Mensaje enviado correctamente' : 'Message sent successfully'}
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm cursor-pointer"
+          onClick={() => setFormSent(false)}
+        >
+          <div
+            className="flex flex-col items-center gap-4 bg-black text-white border-4 border-[#bbf7d0] px-12 py-10 shadow-[8px_8px_0px_0px_rgba(187,247,208,0.6)] max-w-sm w-full mx-4 text-center cursor-default"
+            onClick={e => e.stopPropagation()}
+          >
+            <span className="text-6xl">✅</span>
+            <div>
+              <p className="font-black text-2xl uppercase tracking-wide mb-2">
+                {lang === 'es' ? '¡Mensaje enviado!' : 'Message sent!'}
+              </p>
+              <p className="text-gray-400 font-medium">
+                {lang === 'es' ? 'Me pondré en contacto contigo pronto.' : "I'll get back to you soon."}
+              </p>
+            </div>
+            <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden mt-2">
+              <div className="h-full bg-[#bbf7d0] animate-[shrink_2s_linear_forwards]" style={{width:'100%'}}/>
+            </div>
+          </div>
         </div>
       )}
 
@@ -392,6 +449,7 @@ export default function Portfolio() {
         <aside className="hidden lg:flex flex-col fixed right-0 top-0 h-full w-[160px] z-50">
           {/* Always dark background */}
           <div className="absolute inset-0 bg-[#0a0a0a] border-l border-gray-800" />
+          <SidebarTrail />
 
           <div className="relative flex flex-col h-full z-10 py-4 px-3">
 
@@ -451,65 +509,57 @@ export default function Portfolio() {
           {/* ----------------------------------------------------------------
               HERO
           ---------------------------------------------------------------- */}
-          <section id="inicio" className={`min-h-screen border-b-2 ${border} mb-24 relative overflow-hidden`}>
+          <section id="inicio" className={`min-h-screen md:min-h-screen mb-8 md:mb-24 relative overflow-hidden`}>
 
             {/* Floating code snippets — decorative background */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
               <pre className={`absolute top-8 left-[30%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`const dev = {\n  name: "Steven",\n  role: "Software Eng.",\n  passion: "clean code"\n};`}</pre>
               <pre className={`absolute top-12 right-[20%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`function build(idea) {\n  return idea\n    .design()\n    .develop()\n    .deploy();\n}`}</pre>
               <pre className={`absolute bottom-[30%] left-[38%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`if (problem) {\n  solve(it);\n} else {\n  improve();\n}`}</pre>
-              <pre className={`absolute bottom-16 right-[22%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`git commit -m\n  "feat: new idea"\ngit push origin\n  main`}</pre>
+              <pre className={`absolute bottom-[42%] right-[22%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`git commit -m\n  "feat: new idea"\ngit push origin\n  main`}</pre>
             </div>
 
             {/* Social icons — fixed right column */}
-            <div className="absolute top-6 right-6 flex flex-col gap-3 z-20">
-              <a href="https://github.com/StevenInsuasti" target="_blank" rel="noopener noreferrer"
-                className={`p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a] hover:text-[#0f0f0f]' : 'bg-white hover:bg-black hover:text-white'} transition-colors`}>
-                <Github size={18} />
-              </a>
-              <a href="https://www.linkedin.com/in/steven-eraso-insuasti/" target="_blank" rel="noopener noreferrer"
-                className={`p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a] hover:text-[#0f0f0f]' : 'bg-white hover:bg-black hover:text-white'} transition-colors`}>
-                <Linkedin size={18} />
-              </a>
-              <a href="mailto:steveninsuasti@gmail.com"
-                className={`p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a] hover:text-[#0f0f0f]' : 'bg-white hover:bg-black hover:text-white'} transition-colors`}>
-                <Mail size={18} />
-              </a>
-              <a href="https://wa.me/573017824030" target="_blank" rel="noopener noreferrer"
-                className={`p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a]' : 'bg-white hover:bg-black'} transition-colors group`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`https://img.icons8.com/?size=100&id=16733&format=png&color=${dark ? 'ffffff' : '000000'}`} alt="WhatsApp" className="w-[18px] h-[18px] group-hover:invert" />
-              </a>
+            <div className="absolute top-6 right-6 flex flex-col gap-4 z-20">
+              {[
+                { Icon: Github, href: 'https://github.com/StevenInsuasti', img: null },
+                { Icon: Linkedin, href: 'https://www.linkedin.com/in/steven-eraso-insuasti/', img: null },
+                { Icon: Mail, href: 'mailto:steveninsuasti@gmail.com', img: null },
+                { Icon: null, href: 'https://wa.me/573017824030', img: `https://img.icons8.com/?size=100&id=16733&format=png&color=${dark ? 'ffffff' : '000000'}` },
+              ].map(({ Icon, href, img }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                  className={`w-10 h-10 flex items-center justify-center rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a] hover:text-[#0f0f0f]' : 'bg-white hover:bg-black hover:text-white'} transition-colors group`}>
+                  {img
+                    ? <img src={img} alt="WhatsApp" className="w-[18px] h-[18px] group-hover:invert" />
+                    : Icon && <Icon size={18} />
+                  }
+                </a>
+              ))}
             </div>
 
             {/* Main 3-col grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-3 min-h-screen px-6 py-12 gap-6 relative z-10">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 md:min-h-screen px-6 py-12 gap-6 relative z-10">
 
               {/* -- Col 1: name + role + stack badges -- */}
-              <div className="flex flex-col justify-between py-4">
+              <div className="flex flex-col md:justify-between py-4">
                 {/* Badge — stays at top */}
-                <span className="inline-block bg-[#fef08a] text-[#0f0f0f] text-xs font-bold px-3 py-1 rounded-full w-fit">
-                  {tr.welcome}
-                </span>
+                <MetaballsBadge text={tr.welcome} />
 
-                {/* Name block — pushed down */}
-                <div className="flex flex-col gap-3 mt-auto mb-auto pt-8">
-                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-tight"
+                {/* Name block */}
+                <div className="flex flex-col gap-2 md:mt-auto md:mb-auto pt-8">
+                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-black leading-[1.1] tracking-wide"
                     style={{ fontFamily: "'Syne', sans-serif" }}>
                     Steven<br />Eraso<br />Insuasti
                   </h1>
-                  <p className="text-xl font-semibold mt-1">{tr.role}</p>
-                  <p className={`text-sm ${muted} flex items-center gap-2`}>
-                    <GraduationCap size={16} />
-                    {tr.university}
+                  <p className="text-xl font-semibold mt-2">{tr.role}</p>
+                  <p className={`flex items-center gap-2 mt-1 text-sm font-medium ${muted}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <span style={{ fontFamily: "'Inter', sans-serif" }}>{tr.university}</span>
                   </p>
                 </div>
 
-                {/* Divider */}
-                <div className={`h-px w-full ${dark ? 'bg-gray-800' : 'bg-gray-200'}`} />
-
                 {/* Stack badges */}
-                <div>
+                <div className="mt-4">
                   <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                     <span className={`inline-block w-4 h-[2px] ${dark ? 'bg-[#fecaca]' : 'bg-black'}`}/>
                     {lang === 'es' ? 'Stack Principal' : 'Main Stack'}
@@ -523,9 +573,10 @@ export default function Portfolio() {
                       { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
                       { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
                     ].map((tech) => (
-                      <div key={tech.name} className={`flex flex-col items-center gap-1 p-2 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'}`}>
+                      <div key={tech.name} className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'}`}
+                        style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={tech.icon} alt={tech.name} className="w-8 h-8" />
+                        <img src={tech.icon} alt={tech.name} className="w-8 h-8 object-contain" />
                         <span className="text-[9px] font-bold">{tech.name}</span>
                       </div>
                     ))}
@@ -545,19 +596,20 @@ export default function Portfolio() {
               </div>
 
               {/* -- Col 3: tagline + buttons + stats -- */}
-              <div className="flex flex-col gap-5 justify-between py-4 pr-16">
-                {/* Top space aligned with social icons height (~4 icons * ~52px = ~210px) */}
+              <div className="flex flex-col gap-5 md:justify-between pb-0 md:py-4 pr-0 md:pr-16">
                 <div>
                   <div className="hidden md:block mb-[220px]" />
-                  <p className="text-xl leading-relaxed mb-6 font-light italic tracking-wide" style={{fontFamily: 'Georgia, serif'}}>
+                  <p className="text-lg leading-relaxed mb-6 font-medium tracking-normal"
+                    style={{ fontFamily: "'Inter', sans-serif" }}>
                     {tr.tagline}
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <a href="/cv.pdf" download="CV-Steven-Eraso-Insuasti.pdf" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
+                    <a href="/cv.pdf" download="CV-Steven-Eraso-Insuasti.pdf"
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
                       <Download size={16} />{tr.downloadCV}
                     </a>
                     <button onClick={() => scrollToSection('proyectos')}
-                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm border-2 ${border} transition-colors hover:bg-[#bfdbfe] hover:text-[#0f0f0f] hover:border-[#bfdbfe]`}>
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 border-current transition-colors hover:bg-[#bfdbfe] hover:text-[#0f0f0f] hover:border-[#bfdbfe]`}>
                       <ChevronRight size={16} />{tr.viewProjects}
                     </button>
                   </div>
@@ -571,14 +623,30 @@ export default function Portfolio() {
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { value: '3+', label: lang === 'es' ? 'Proyectos' : 'Projects', color: 'bg-[#bfdbfe]' },
-                      { value: '6+', label: lang === 'es' ? 'Certificaciones' : 'Certifications', color: 'bg-[#e9d5ff]' },
-                      { value: '16+', label: lang === 'es' ? 'Tecnologías' : 'Technologies', color: 'bg-[#fef08a]' },
-                      { value: '80%', label: lang === 'es' ? 'Inglés' : 'English', color: 'bg-[#fecaca]' },
+                      { value: '3+', label: lang === 'es' ? 'Proyectos' : 'Projects', Icon: ExternalLink },
+                      { value: '6+', label: lang === 'es' ? 'Certificaciones' : 'Certifications', Icon: Award },
+                      { value: '16+', label: lang === 'es' ? 'Tecnologías' : 'Technologies', Icon: Code2 },
+                      { value: '80%', label: lang === 'es' ? 'Inglés' : 'English', Icon: Star },
                     ].map((stat, i) => (
-                      <div key={i} className={`rounded-xl border-2 border-black p-3 text-center ${stat.color}`}>
-                        <p className="text-2xl font-black text-[#0f0f0f]">{stat.value}</p>
-                        <p className="text-[10px] font-bold text-[#0f0f0f]">{stat.label}</p>
+                      <div key={i}
+                        className="rounded-xl p-3 flex items-center justify-between relative overflow-hidden"
+                        style={{
+                          background: dark
+                            ? 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)'
+                            : 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 100%)',
+                          backdropFilter: 'blur(12px) saturate(160%)',
+                          WebkitBackdropFilter: 'blur(12px) saturate(160%)',
+                          border: dark ? '1.5px solid rgba(255,255,255,0.12)' : '1.5px solid rgba(255,255,255,0.3)',
+                          boxShadow: dark
+                            ? '0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)'
+                            : '0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5)',
+                        }}>
+                        <span className="absolute -bottom-3 -right-3 w-16 h-16 rounded-full blur-2xl opacity-20 pointer-events-none bg-white" />
+                        <div className="relative z-10">
+                          <p className={`text-3xl font-black leading-none ${dark ? 'text-white' : 'text-[#0f0f0f]'}`}>{stat.value}</p>
+                          <p className={`text-[10px] font-semibold mt-0.5 ${dark ? 'text-white/60' : 'text-[#0f0f0f]/70'}`}>{stat.label}</p>
+                        </div>
+                        <stat.Icon size={20} className={`relative z-10 ${dark ? 'text-white/40' : 'text-[#0f0f0f]/30'}`} />
                       </div>
                     ))}
                   </div>
@@ -695,7 +763,7 @@ export default function Portfolio() {
                       {cat.items.map((item) => (
                         <div key={item.name} className={`flex items-center gap-2 p-2 rounded-xl border ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={item.icon} alt={item.name} className="w-6 h-6 shrink-0" />
+                          <img src={item.icon} alt={item.name} className={`w-6 h-6 shrink-0 ${dark && item.name === 'GitHub' ? 'invert' : ''}`} />
                           <span className="text-xs font-semibold truncate">{item.name}</span>
                         </div>
                       ))}
@@ -900,7 +968,7 @@ export default function Portfolio() {
                   </div>
                   <button
                     onClick={() => window.open('https://wa.me/573017824030', '_blank')}
-                    className="shrink-0 inline-flex items-center gap-3 bg-[#06b6d4] text-black font-black py-4 px-8 rounded-xl text-lg hover:bg-[#0891b2] transition-colors uppercase tracking-wide"
+                    className="shrink-0 inline-flex items-center gap-3 bg-[#25D366] text-white font-black py-4 px-8 rounded-xl text-lg uppercase tracking-wide transition-all duration-200 hover:scale-105 hover:bg-[#1ebe57] hover:shadow-[0_0_24px_rgba(37,211,102,0.6)] active:scale-95"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="https://img.icons8.com/color/30/whatsapp--v1.png" alt="WhatsApp" className="w-6 h-6" />
@@ -948,11 +1016,17 @@ export default function Portfolio() {
                     </div>
                     <button
                       type="submit"
-                      className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors ${btn}`}
+                      disabled={formLoading}
+                      className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed ${btn}`}
                     >
                       <Send size={16} />
-                      {tr.sendBtn}
+                      {formLoading ? (lang === 'es' ? 'Enviando...' : 'Sending...') : tr.sendBtn}
                     </button>
+                    {formError && (
+                      <p className="text-red-500 font-bold text-sm text-center">
+                        ❌ {formErrorMsg}
+                      </p>
+                    )}
                   </form>
                 </div>
 
@@ -986,8 +1060,9 @@ export default function Portfolio() {
           </section>
 
           {/* -- Footer -- */}
-          <footer className="bg-[#0f0f0f] text-white mt-auto">
-            <div className="max-w-7xl mx-auto px-6 py-12">
+          <footer className="bg-[#0f0f0f] text-white mt-auto relative overflow-hidden">
+            <SidebarTrail />
+            <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
 
                 {/* Col 1 — Brand */}
