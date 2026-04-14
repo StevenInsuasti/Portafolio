@@ -15,10 +15,8 @@ export default function MetaballsBadge({ text }: Props) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const W = canvas.offsetWidth
-    const H = canvas.offsetHeight
-    canvas.width = W
-    canvas.height = H
+    let animId: number
+    let balls: { x: number; y: number; vx: number; vy: number; r: number; color: string }[] = []
 
     const colors = ['#06b6d4', '#4ade80', '#f59e0b', '#f97316', '#facc15', '#34d399']
 
@@ -28,18 +26,27 @@ export default function MetaballsBadge({ text }: Props) {
       return Math.abs(v) < minSpeed ? minSpeed * Math.sign(v || 1) : v
     }
 
-    const balls = Array.from({ length: 6 }, (_, i) => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: randV(),
-      vy: randV(),
-      r: 18 + Math.random() * 14,
-      color: colors[i % colors.length],
-    }))
+    const init = () => {
+      const W = canvas.offsetWidth
+      const H = canvas.offsetHeight
+      if (!W || !H) return
+      canvas.width = W
+      canvas.height = H
+      balls = Array.from({ length: 6 }, (_, i) => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: randV(),
+        vy: randV(),
+        r: 18 + Math.random() * 14,
+        color: colors[i % colors.length],
+      }))
+    }
 
-    let animId: number
+    init()
 
     const draw = () => {
+      const W = canvas.width
+      const H = canvas.height
       ctx.clearRect(0, 0, W, H)
 
       balls.forEach(b => {
@@ -61,7 +68,14 @@ export default function MetaballsBadge({ text }: Props) {
     }
 
     draw()
-    return () => cancelAnimationFrame(animId)
+
+    const ro = new ResizeObserver(() => { init() })
+    ro.observe(canvas)
+
+    return () => {
+      cancelAnimationFrame(animId)
+      ro.disconnect()
+    }
   }, [])
 
   return (

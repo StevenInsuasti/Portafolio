@@ -216,13 +216,13 @@ const t = {
 const navIds = ['sobre-mi', 'stack', 'proyectos', 'experiencia', 'certificaciones', 'testimonios', 'objetivos', 'contacto']
 
 const techSkillsList = [
-  { label: 'JavaScript / TypeScript', pct: 65 },
-  { label: 'React / Next.js', pct: 70 },
-  { label: 'SQL / Bases de Datos', pct: 70 },
-  { label: 'Python', pct: 75 },
-  { label: 'Git & Control de Versiones', pct: 78 },
-  { label: 'HTML & CSS / Tailwind', pct: 70 },
-  { label: 'Inglés / English', pct: 80 },
+  { label: 'JavaScript / TypeScript', level: 3 },
+  { label: 'React / Next.js', level: 3 },
+  { label: 'SQL / Bases de Datos', level: 3 },
+  { label: 'Python', level: 3 },
+  { label: 'Git & Control de Versiones', level: 3 },
+  { label: 'HTML & CSS / Tailwind', level: 3 },
+  { label: 'Inglés / English', level: 3 },
 ]
 
 const projectImgs = [
@@ -519,8 +519,8 @@ export default function Portfolio() {
               <pre className={`absolute bottom-[42%] right-[22%] text-[10px] font-mono opacity-10 leading-relaxed ${dark ? 'text-green-400' : 'text-gray-500'}`}>{`git commit -m\n  "feat: new idea"\ngit push origin\n  main`}</pre>
             </div>
 
-            {/* Social icons — fixed right column */}
-            <div className="absolute top-6 right-6 flex flex-col gap-4 z-20">
+            {/* Social icons — fixed right column (desktop only) */}
+            <div className="hidden md:flex absolute top-6 right-6 flex-col gap-4 z-20">
               {[
                 { Icon: Github, href: 'https://github.com/StevenInsuasti', img: null },
                 { Icon: Linkedin, href: 'https://www.linkedin.com/in/steven-eraso-insuasti/', img: null },
@@ -538,33 +538,68 @@ export default function Portfolio() {
             </div>
 
             {/* Main 3-col grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-3 md:min-h-screen px-6 py-12 gap-6 relative z-10">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 md:min-h-screen px-6 py-4 gap-4 relative z-10 md:items-stretch">
+
+              {/* Badge mobile — solo visible en mobile, arriba del todo */}
+              <div className="md:hidden order-1 pt-2 flex justify-center">
+                <MetaballsBadge text={tr.welcome} />
+              </div>
+
+              {/* -- Col 2: photo -- */}
+              <div className="flex flex-col justify-center items-stretch py-1 order-2 md:order-2">
+                <div className={`relative w-full rounded-2xl overflow-hidden border-4 ${border} shadow-xl h-[42vh] md:h-auto md:min-h-[75vh]`}>
+                  <ImageWithFallback
+                    src="/steven.png"
+                    alt="Steven Eraso Insuasti"
+                    className="w-full h-full object-contain md:object-cover object-top absolute inset-0"
+                  />
+                </div>
+                {/* Social icons — mobile only, below photo */}
+                <div className="md:hidden flex justify-center gap-3 mt-3">
+                  {[
+                    { Icon: Github, href: 'https://github.com/StevenInsuasti', img: null },
+                    { Icon: Linkedin, href: 'https://www.linkedin.com/in/steven-eraso-insuasti/', img: null },
+                    { Icon: Mail, href: 'mailto:steveninsuasti@gmail.com', img: null },
+                    { Icon: null, href: 'https://wa.me/573017824030', img: `https://img.icons8.com/?size=100&id=16733&format=png&color=${dark ? 'ffffff' : '000000'}` },
+                  ].map(({ Icon, href, img }, i) => (
+                    <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                      className={`w-10 h-10 flex items-center justify-center rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] ${dark ? 'bg-[#1a1a1a] hover:bg-[#fef08a] hover:text-[#0f0f0f]' : 'bg-white hover:bg-black hover:text-white'} transition-colors group`}>
+                      {img
+                        ? <img src={img} alt="WhatsApp" className="w-[18px] h-[18px] group-hover:invert" />
+                        : Icon && <Icon size={18} />
+                      }
+                    </a>
+                  ))}
+                </div>
+              </div>
 
               {/* -- Col 1: name + role + stack badges -- */}
-              <div className="flex flex-col md:justify-between py-4">
-                {/* Badge — stays at top */}
-                <MetaballsBadge text={tr.welcome} />
+              <div className="flex flex-col md:justify-between py-1 order-3 md:order-1">
+                {/* Badge — desktop only (mobile badge is above) */}
+                <div className="hidden md:block">
+                  <MetaballsBadge text={tr.welcome} />
+                </div>
 
                 {/* Name block */}
-                <div className="flex flex-col gap-2 md:mt-auto md:mb-auto pt-8">
-                  <h1 className="text-4xl md:text-5xl xl:text-6xl font-black leading-[1.1] tracking-wide"
+                <div className="flex flex-col gap-1 md:mt-auto md:mb-auto pt-4">
+                  <h1 className="text-4xl md:text-4xl xl:text-5xl font-black leading-[1.1] tracking-wide"
                     style={{ fontFamily: "'Syne', sans-serif" }}>
                     Steven<br />Eraso<br />Insuasti
                   </h1>
-                  <p className="text-xl font-semibold mt-2">{tr.role}</p>
-                  <p className={`flex items-center gap-2 mt-1 text-sm font-medium ${muted}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  <p className="text-base font-semibold mt-1">{tr.role}</p>
+                  <p className={`flex items-center gap-2 mt-1 text-xs font-medium ${muted}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                     <span style={{ fontFamily: "'Inter', sans-serif" }}>{tr.university}</span>
                   </p>
                 </div>
 
                 {/* Stack badges */}
-                <div className="mt-4">
-                  <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                <div className="mt-3">
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
                     <span className={`inline-block w-4 h-[2px] ${dark ? 'bg-[#fecaca]' : 'bg-black'}`}/>
                     {lang === 'es' ? 'Stack Principal' : 'Main Stack'}
                   </p>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
                       { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
@@ -573,55 +608,43 @@ export default function Portfolio() {
                       { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
                       { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
                     ].map((tech) => (
-                      <div key={tech.name} className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'}`}
+                      <div key={tech.name} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'}`}
                         style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={tech.icon} alt={tech.name} className="w-8 h-8 object-contain" />
-                        <span className="text-[9px] font-bold">{tech.name}</span>
+                        <img src={tech.icon} alt={tech.name} className="w-6 h-6 object-contain" />
+                        <span className="text-[8px] font-bold">{tech.name}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* -- Col 2: photo full height -- */}
-              <div className="flex justify-center items-stretch py-4">
-                <div className={`relative w-full rounded-2xl overflow-hidden border-4 ${border} shadow-xl`} style={{minHeight: '70vh'}}>
-                  <ImageWithFallback
-                    src="/steven.png"
-                    alt="Steven Eraso Insuasti"
-                    className="w-full h-full object-cover object-top absolute inset-0"
-                  />
-                </div>
-              </div>
-
               {/* -- Col 3: tagline + buttons + stats -- */}
-              <div className="flex flex-col gap-5 md:justify-between pb-0 md:py-4 pr-0 md:pr-16">
-                <div>
-                  <div className="hidden md:block mb-[220px]" />
-                  <p className="text-lg leading-relaxed mb-6 font-medium tracking-normal"
+              <div className="flex flex-col justify-between gap-3 pb-0 md:py-1 pr-0 md:pr-16 order-3 md:order-3">
+                <div className="pt-4 md:pt-[120px]">
+                  <p className="text-base leading-relaxed mb-4 font-medium tracking-normal"
                     style={{ fontFamily: "'Inter', sans-serif" }}>
                     {tr.tagline}
                   </p>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     <a href="/cv.pdf" download="CV-Steven-Eraso-Insuasti.pdf"
-                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
-                      <Download size={16} />{tr.downloadCV}
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
+                      <Download size={15} />{tr.downloadCV}
                     </a>
                     <button onClick={() => scrollToSection('proyectos')}
-                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border-2 border-current transition-colors hover:bg-[#bfdbfe] hover:text-[#0f0f0f] hover:border-[#bfdbfe]`}>
-                      <ChevronRight size={16} />{tr.viewProjects}
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm border-2 border-current transition-colors hover:bg-[#bfdbfe] hover:text-[#0f0f0f] hover:border-[#bfdbfe]`}>
+                      <ChevronRight size={15} />{tr.viewProjects}
                     </button>
                   </div>
                 </div>
 
                 {/* Stats */}
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
                     <span className="inline-block w-4 h-[2px] bg-[#6366f1]"/>
                     {lang === 'es' ? 'Estadísticas' : 'Stats'}
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2">
                     {[
                       { value: '3+', label: lang === 'es' ? 'Proyectos' : 'Projects', Icon: ExternalLink },
                       { value: '6+', label: lang === 'es' ? 'Certificaciones' : 'Certifications', Icon: Award },
@@ -629,7 +652,7 @@ export default function Portfolio() {
                       { value: '80%', label: lang === 'es' ? 'Inglés' : 'English', Icon: Star },
                     ].map((stat, i) => (
                       <div key={i}
-                        className="rounded-xl p-3 flex items-center justify-between relative overflow-hidden"
+                        className="rounded-xl p-2.5 flex items-center justify-between relative overflow-hidden"
                         style={{
                           background: dark
                             ? 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)'
@@ -641,12 +664,12 @@ export default function Portfolio() {
                             ? '0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)'
                             : '0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5)',
                         }}>
-                        <span className="absolute -bottom-3 -right-3 w-16 h-16 rounded-full blur-2xl opacity-20 pointer-events-none bg-white" />
+                        <span className="absolute -bottom-3 -right-3 w-12 h-12 rounded-full blur-2xl opacity-20 pointer-events-none bg-white" />
                         <div className="relative z-10">
-                          <p className={`text-3xl font-black leading-none ${dark ? 'text-white' : 'text-[#0f0f0f]'}`}>{stat.value}</p>
-                          <p className={`text-[10px] font-semibold mt-0.5 ${dark ? 'text-white/60' : 'text-[#0f0f0f]/70'}`}>{stat.label}</p>
+                          <p className={`text-2xl font-black leading-none ${dark ? 'text-white' : 'text-[#0f0f0f]'}`}>{stat.value}</p>
+                          <p className={`text-[9px] font-semibold mt-0.5 ${dark ? 'text-white/60' : 'text-[#0f0f0f]/70'}`}>{stat.label}</p>
                         </div>
-                        <stat.Icon size={20} className={`relative z-10 ${dark ? 'text-white/40' : 'text-[#0f0f0f]/30'}`} />
+                        <stat.Icon size={16} className={`relative z-10 ${dark ? 'text-white/40' : 'text-[#0f0f0f]/30'}`} />
                       </div>
                     ))}
                   </div>
@@ -707,20 +730,17 @@ export default function Portfolio() {
                 {/* Tech skills */}
                 <div className={`rounded-2xl border-2 p-6 ${box}`}>
                   <h3 className="font-bold mb-5">{tr.techSkills}</h3>
-                  <div className="space-y-4">
+                  <div className="flex flex-wrap gap-2">
                     {techSkillsList.map((skill) => (
-                      <div key={skill.label}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>{skill.label}</span>
-                          <span className={muted}>{skill.pct}%</span>
-                        </div>
-                        <div className={`h-2 rounded-full ${dark ? 'bg-[#2a2a2a]' : 'bg-[#e5e7eb]'}`}>
-                          <div
-                            className="h-2 rounded-full bg-[#6366f1]"
-                            style={{ width: `${skill.pct}%` }}
-                          />
-                        </div>
-                      </div>
+                      <span key={skill.label}
+                        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold border ${dark ? 'bg-[#1a1a1a] border-[#2a2a2a]' : 'bg-white border-[#e5e7eb]'}`}>
+                        <span className="flex gap-0.5">
+                          {[1,2,3].map(d => (
+                            <span key={d} className={`w-1.5 h-1.5 rounded-full ${d <= skill.level ? 'bg-[#6366f1]' : dark ? 'bg-[#3a3a3a]' : 'bg-[#e5e7eb]'}`} />
+                          ))}
+                        </span>
+                        {skill.label}
+                      </span>
                     ))}
                   </div>
                 </div>
