@@ -6,7 +6,7 @@ import {
   Github, Linkedin, Mail, Download,
   ChevronRight, Briefcase, GraduationCap,
   User, Send, ExternalLink, MessageSquareQuote,
-  Award, Star, Menu, X, Sun, Moon, Phone, MapPin,
+  Award, Star, Menu, X, Sun, Moon, Phone, MapPin, Eye,
 } from 'lucide-react'
 import { ImageWithFallback } from './ImageWithFallback'
 import MetaballsBadge from './MetaballsBadge'
@@ -45,36 +45,42 @@ const t = {
       {
         badge: 'Académico (Actualidad)',
         title: 'Ingeniería de Software',
-        sub: 'Universidad Cooperativa de Colombia',
-        desc: 'Formación integral en ciencias computacionales, algoritmos, metodologías ágiles de desarrollo de software y arquitectura de sistemas.',
+        sub: 'Universidad Cooperativa de Colombia · 5.º semestre',
+        desc: 'Formación en arquitectura de software, estructuras de datos, algoritmos y desarrollo de sistemas completos aplicando metodologías ágiles.',
         bullets: [
-          'Desarrollo de proyectos académicos aplicando patrones de diseño y principios SOLID.',
-          'Participación en equipos de trabajo bajo metodología Scrum para entrega de software funcional.',
-          'Implementación de bases de datos relacionales y consultas SQL optimizadas.',
-          'Promedio académico destacado con enfoque en materias de programación y estructuras de datos.',
+          'Arquitectura y desarrollo de sistemas completos, como un Sistema de Gestión de Turnos para laboratorios, aplicando principios SOLID e integrando backend en Java con bases de datos como MongoDB.',
+          'Aplicación práctica de Scrum y diseño UI/UX en el desarrollo de aplicaciones y prototipos interactivos.',
+          'Implementación de estructuras de datos avanzadas (listas enlazadas, árboles, grafos) en proyectos funcionales.',
+          'Promedio académico destacado con enfoque en programación, bases de datos y arquitectura de sistemas.',
         ],
       },
       {
         badge: 'Prácticas / Laboral',
         title: 'Desarrollador Junior (Freelance)',
         sub: 'Sistemas Web & Bases de Datos',
-        desc: 'Construcción de aplicaciones web completas para clientes independientes.',
+        desc: 'Desarrollo de aplicaciones web completas para clientes independientes, desde la toma de requerimientos hasta el despliegue en producción.',
         bullets: [
-          'Diseño y desarrollo de interfaces responsivas con React y Tailwind CSS.',
-          'Modelado de bases de datos relacionales y creación de APIs REST con Node.js.',
-          'Entrega de proyectos en tiempo acordado manteniendo comunicación constante con el cliente.',
+          'Diseño y desarrollo de interfaces altamente responsivas y optimizadas con React y Tailwind CSS, priorizando la experiencia de usuario (UX).',
+          'Modelado de bases de datos relacionales y creación de APIs REST con Node.js y PostgreSQL.',
+          'Gestión integral de proyectos end-to-end, asegurando comunicación constante con el cliente y cumplimiento de plazos.',
           'Implementación de control de versiones con Git y GitLab en todos los proyectos.',
         ],
       },
     ],
     projectsTitle: '03. Mis Proyectos',
     projects: [
-      { title: 'MusicON', desc: 'Reproductor de música MP3 con interfaz fluida tipo "liquid". Permite subir archivos MP3, gestionar una lista de reproducción y disfrutar de una experiencia visual inmersiva.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
-      { title: 'Aerotickets', desc: 'Sistema de reservas de vuelos con búsqueda de rutas, selección de asientos y gestión de pasajeros. Interfaz moderna e intuitiva para simular una aerolínea real.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
-      { title: 'Reloj Análogo', desc: 'Reloj analógico interactivo con manecillas animadas en tiempo real y sistema de alarma configurable. Desarrollado con JavaScript puro.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app' },
-      { title: 'Clon Mercado Libre', desc: 'Clon funcional de Mercado Libre con listado de productos, búsqueda y carrito de compras. Proyecto de práctica para dominar HTML, CSS y JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit' },
-      { title: 'YoJobs', desc: 'Red social profesional inspirada en LinkedIn. Permite registro de usuarios, creación de perfil, publicación de ofertas laborales y conexión entre profesionales.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register' },
-      { title: 'Cálculo Multivariable', desc: 'Aplicativo interactivo para cálculo multivariable con visualizaciones 3D, gradientes, integrales dobles y triples. Desarrollado con Python y Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
+      { title: 'MusicON', desc: 'Reproductor de música MP3 con interfaz fluida tipo "liquid". Permite subir archivos MP3, gestionar una lista de reproducción y disfrutar de una experiencia visual inmersiva.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app',
+        detail: { title: 'MusicON — Reproductor de Música Web', subtitle: 'Plataforma Full-stack · Next.js + Python', body: 'Construí un reproductor web que permite subir archivos MP3 y gestionarlos en una playlist interactiva: reproducir, pausar, navegar, reordenar y marcar favoritos desde el navegador.', stack: 'Next.js 14 · TypeScript · Tailwind · Python/Flask · Vercel + Render', challenge: 'La playlist está implementada como una lista doblemente enlazada desde cero en Python, lo que permite mover canciones sin recalcular toda la lista. El reto fue mantener los punteros prev y next consistentes en cada operación y exponerlos como endpoints REST consumidos en tiempo real por el frontend.' } },
+      { title: 'Aerotickets', desc: 'Sistema de reservas de vuelos con búsqueda de rutas, selección de asientos y gestión de pasajeros. Interfaz moderna e intuitiva para simular una aerolínea real.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app',
+        detail: { title: 'Aerotickets — Plataforma de Reservas de Vuelos', subtitle: 'Full-stack · Spring Boot + React', body: 'Plataforma para reservar vuelos domésticos en Colombia: búsqueda por ruta y fecha, selección de asientos, pago en línea, chatbot de IA para asistencia y seguimiento de vuelos en tiempo real.', stack: 'Spring Boot 3 · Java · PostgreSQL · React · TypeScript · Tailwind · Stripe · OpenAI API · Docker · Vercel + Render', challenge: 'Si dos usuarios intentaban reservar el mismo asiento al mismo tiempo, ambos lo veían disponible y podían confirmarlo. Lo resolví con optimistic locking — cada reserva tiene un campo version que PostgreSQL usa para detectar conflictos: si dos operaciones tocan el mismo registro a la vez, la segunda falla de forma controlada en lugar de guardar datos inconsistentes.' } },
+      { title: 'Reloj Análogo', desc: 'Reloj analógico interactivo con manecillas animadas en tiempo real y sistema de alarma configurable. Desarrollado con JavaScript puro.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app',
+        detail: { title: 'Reloj Análogo — Reloj Mundial con Alarmas', subtitle: 'Full-stack · Python/Flask + Canvas API', body: 'Reloj analógico que muestra la hora en tiempo real de cualquier zona horaria del mundo, con sistema de alarmas y sonido personalizado. El reloj se dibuja completamente con código usando HTML5 Canvas, sin imágenes.', stack: 'Python · Flask · HTML5 Canvas · JavaScript · Intl API · Vercel', challenge: 'El reloj original usaba una lista circular doblemente enlazada en Python con un thread que hacía tick cada segundo — funciona perfecto en local, pero Vercel es serverless: no hay procesos persistentes. Lo resolví eliminando el estado del servidor por completo y delegando todo el manejo del tiempo al navegador con Intl.DateTimeFormat, que soporta cualquier zona horaria de forma nativa. El backend pasó a ser stateless y el frontend calcula la hora correcta en cada tick.' } },
+      { title: 'Clon Mercado Libre', desc: 'Clon funcional de Mercado Libre con listado de productos, búsqueda y carrito de compras. Proyecto de práctica para dominar HTML, CSS y JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit',
+        detail: { title: 'Clon Mercado Libre — Landing Page Colaborativa', subtitle: 'Proyecto en equipo · HTML + CSS + JavaScript', body: 'Repliqué la experiencia de MercadoLibre Colombia trabajando en equipo con un flujo real de GitFlow: ramas por feature, Pull Requests y resolución de conflictos. El objetivo no era solo la página, sino aprender a colaborar como lo haría un equipo profesional.', stack: 'HTML5 · CSS3 · JavaScript vanilla · Git/GitHub · GitHub Pages', challenge: 'Al hacer merge de las ramas, el index.html quedó lleno de conflictos porque todos tocaban el mismo archivo. Lo resolví analizando manualmente cada sección, eliminando duplicados y unificando la estructura. Desde ahí establecimos una regla: cada desarrollador con su propio archivo CSS independiente para evitar futuros choques.' } },
+      { title: 'YoJobs', desc: 'Red social profesional inspirada en LinkedIn. Permite registro de usuarios, creación de perfil, publicación de ofertas laborales y conexión entre profesionales.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register',
+        detail: { title: 'YoJobs — Red Social Profesional', subtitle: 'Full-stack · Django + PostgreSQL', body: 'Un LinkedIn simplificado: perfiles profesionales, publicación de ofertas laborales, solicitudes de conexión y mensajes directos entre usuarios.', stack: 'Django · PostgreSQL (Neon) · WhiteNoise · Pillow · Vercel · HTML/CSS', challenge: 'Django no está pensado para entornos serverless y SQLite no funciona en sistemas de archivos de solo lectura como el de Vercel. Lo resolví migrando la base de datos a PostgreSQL en Neon, usando WhiteNoise para servir los archivos estáticos directamente desde Django, y configurando el vercel.json para enrutar todo al WSGI. El resultado: una app Django completamente funcional corriendo en infraestructura serverless.' } },
+      { title: 'Cálculo Multivariable', desc: 'Aplicativo interactivo para cálculo multivariable con visualizaciones 3D, gradientes, integrales dobles y triples. Desarrollado con Python y Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app',
+        detail: { title: 'Cálculo Multivariable — Herramienta Educativa Interactiva', subtitle: 'Python · Streamlit + SymPy', body: 'Herramienta que permite explorar cálculo multivariable de forma visual: superficies 3D, gradientes, integrales dobles/triples y optimización con Lagrange. El usuario ingresa cualquier función y la app calcula y grafica todo en tiempo real, sin escribir código.', stack: 'Python · Streamlit · SymPy · NumPy · mpmath · Plotly', challenge: 'SymPy no siempre puede resolver integrales o límites complejos — simplemente falla. Lo resolví con un sistema de fallback en dos capas: primero intenta resolverlo simbólicamente, y si lanza una excepción, cae automáticamente a evaluación numérica con mpmath. Así la app funciona con cualquier función que el usuario ingrese, sin romperse.' } },
     ],
     code: 'Código', demo: 'Demo', comingSoon: 'Próximamente',
     testimonialsTitle: '06. Testimonios',
@@ -88,7 +94,7 @@ const t = {
     certs: [
       { title: 'Desarrollo Web Frontend', issuer: 'Meta / Coursera', date: 'Mar 2024' },
       { title: 'Bases de Datos con SQL', issuer: 'Universidad Cooperativa', date: 'Jun 2024' },
-      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Sep 2024' },
+      { title: 'Inglés B2 — Intermedio Alto', issuer: 'Cambridge Academy', date: 'Sep 2024' },
       { title: 'GitLab 101', issuer: 'GitLab University', date: 'Nov 2024' },
       { title: 'JavaScript Moderno', issuer: 'Juan Pablo de la Torre — Udemy', date: 'Ene 2025' },
       { title: 'Algoritmos y Estructuras de Datos en JS', issuer: 'FreeCodeCamp', date: 'Mar 2025' },
@@ -143,36 +149,42 @@ const t = {
       {
         badge: 'Academic (Current)',
         title: 'Software Engineering',
-        sub: 'Universidad Cooperativa de Colombia',
-        desc: 'Comprehensive training in computer science, algorithms, agile methodologies and systems architecture.',
+        sub: 'Universidad Cooperativa de Colombia · 5th semester',
+        desc: 'Training in software architecture, data structures, algorithms and full system development using agile methodologies.',
         bullets: [
-          'Developed academic projects applying design patterns and SOLID principles.',
-          'Worked in Scrum teams to deliver functional software within deadlines.',
-          'Implemented relational databases and optimized SQL queries.',
-          'Strong academic performance with focus on programming and data structures courses.',
+          'Architecture and development of complete systems, such as a Lab Queue Management System, applying SOLID principles and integrating a Java backend with MongoDB.',
+          'Practical application of Scrum and UI/UX design in the development of applications and interactive prototypes.',
+          'Implementation of advanced data structures (linked lists, trees, graphs) in functional projects.',
+          'Strong academic performance with focus on programming, databases and systems architecture.',
         ],
       },
       {
         badge: 'Internship / Work',
         title: 'Junior Developer (Freelance)',
         sub: 'Web Systems & Databases',
-        desc: 'Built complete web applications for independent clients.',
+        desc: 'Full-stack web development for independent clients, from requirements gathering to production deployment.',
         bullets: [
-          'Designed and developed responsive interfaces using React and Tailwind CSS.',
-          'Modeled relational databases and built REST APIs with Node.js.',
-          'Delivered projects on time while maintaining constant client communication.',
+          'Designed and developed highly responsive, optimized interfaces with React and Tailwind CSS, prioritizing user experience (UX).',
+          'Modeled relational databases and built REST APIs with Node.js and PostgreSQL.',
+          'End-to-end project management, ensuring constant client communication and on-time delivery.',
           'Applied version control with Git and GitLab across all projects.',
         ],
       },
     ],
     projectsTitle: '03. My Projects',
     projects: [
-      { title: 'MusicON', desc: 'MP3 music player with a fluid "liquid" interface. Upload MP3 files, manage a playlist and enjoy an immersive visual experience.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app' },
-      { title: 'Aerotickets', desc: 'Flight booking system with route search, seat selection and passenger management. Modern and intuitive interface simulating a real airline.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app' },
-      { title: 'Analog Clock', desc: 'Interactive analog clock with real-time animated hands and configurable alarm system. Built with vanilla JavaScript.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app' },
-      { title: 'MercadoLibre Clone', desc: 'Functional clone of MercadoLibre with product listing, search and shopping cart. Practice project to master HTML, CSS and JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit' },
-      { title: 'YoJobs', desc: 'Professional social network inspired by LinkedIn. Allows user registration, profile creation, job posting and professional networking.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register' },
-      { title: 'Multivariable Calculus', desc: 'Interactive app for multivariable calculus with 3D visualizations, gradients, double and triple integrals. Built with Python and Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app' },
+      { title: 'MusicON', desc: 'MP3 music player with a fluid "liquid" interface. Upload MP3 files, manage a playlist and enjoy an immersive visual experience.', github: 'https://github.com/StevenInsuasti/MusicON', demo: 'https://music-on-six.vercel.app',
+        detail: { title: 'MusicON — Web Music Player', subtitle: 'Full-stack Platform · Next.js + Python', body: 'I built a web player that lets users upload MP3 files and manage them in an interactive playlist: play, pause, navigate, reorder and mark favorites — all from the browser.', stack: 'Next.js 14 · TypeScript · Tailwind · Python/Flask · Vercel + Render', challenge: 'The playlist is implemented as a doubly linked list from scratch in Python, allowing songs to be moved without recalculating the entire list. The challenge was keeping the prev and next pointers consistent across every operation and exposing them as REST endpoints consumed in real time by the frontend.' } },
+      { title: 'Aerotickets', desc: 'Flight booking system with route search, seat selection and passenger management. Modern and intuitive interface simulating a real airline.', github: 'https://github.com/StevenInsuasti/Aerotickets', demo: 'https://aerotickets-frontend.vercel.app',
+        detail: { title: 'Aerotickets — Flight Booking Platform', subtitle: 'Full-stack · Spring Boot + React', body: 'Platform for booking domestic flights in Colombia: route and date search, seat selection, online payment, AI chatbot for assistance and real-time flight tracking.', stack: 'Spring Boot 3 · Java · PostgreSQL · React · TypeScript · Tailwind · Stripe · OpenAI API · Docker · Vercel + Render', challenge: 'If two users tried to book the same seat at the same time, both would see it as available and could confirm it. I solved this with optimistic locking — each reservation has a version field that PostgreSQL uses to detect conflicts: if two operations touch the same record at once, the second one fails in a controlled way instead of saving inconsistent data.' } },
+      { title: 'Analog Clock', desc: 'Interactive analog clock with real-time animated hands and configurable alarm system. Built with vanilla JavaScript.', github: 'https://github.com/StevenInsuasti/RelojAnalogo', demo: 'https://reloj-analogo-beta.vercel.app',
+        detail: { title: 'Analog Clock — World Clock with Alarms', subtitle: 'Full-stack · Python/Flask + Canvas API', body: 'Analog clock that shows real-time hours for any timezone in the world, with an alarm system and custom sound. The clock is drawn entirely with code using HTML5 Canvas — no images.', stack: 'Python · Flask · HTML5 Canvas · JavaScript · Intl API · Vercel', challenge: 'The original clock used a circular doubly linked list in Python with a thread ticking every second — works perfectly locally, but Vercel is serverless: no persistent processes. I solved it by removing all server state and delegating time management to the browser using Intl.DateTimeFormat, which natively supports any timezone. The backend became stateless and the frontend calculates the correct time on every tick.' } },
+      { title: 'MercadoLibre Clone', desc: 'Functional clone of MercadoLibre with product listing, search and shopping cart. Practice project to master HTML, CSS and JavaScript.', github: 'https://github.com/StevenInsuasti/TalleGit', demo: 'https://steveninsuasti.github.io/TalleGit',
+        detail: { title: 'MercadoLibre Clone — Collaborative Landing Page', subtitle: 'Team project · HTML + CSS + JavaScript', body: 'I replicated the MercadoLibre Colombia experience working as a team with a real GitFlow workflow: feature branches, Pull Requests and conflict resolution. The goal was not just the page itself, but learning to collaborate the way a professional team would.', stack: 'HTML5 · CSS3 · Vanilla JavaScript · Git/GitHub · GitHub Pages', challenge: 'When merging branches, the index.html was full of conflicts because everyone was editing the same file. I resolved it by manually analyzing each section, removing duplicates and unifying the structure. From there we set a rule: each developer with their own independent CSS file to avoid future clashes.' } },
+      { title: 'YoJobs', desc: 'Professional social network inspired by LinkedIn. Allows user registration, profile creation, job posting and professional networking.', github: 'https://github.com/StevenInsuasti/RedSocialYoJobs', demo: 'https://red-social-yo-jobs.vercel.app/users/register',
+        detail: { title: 'YoJobs — Professional Social Network', subtitle: 'Full-stack · Django + PostgreSQL', body: 'A simplified LinkedIn: professional profiles, job postings, connection requests and direct messages between users.', stack: 'Django · PostgreSQL (Neon) · WhiteNoise · Pillow · Vercel · HTML/CSS', challenge: 'Django is not designed for serverless environments and SQLite does not work on read-only file systems like Vercel. I solved it by migrating the database to PostgreSQL on Neon, using WhiteNoise to serve static files directly from Django, and configuring vercel.json to route everything to the WSGI. The result: a fully functional Django app running on serverless infrastructure.' } },
+      { title: 'Multivariable Calculus', desc: 'Interactive app for multivariable calculus with 3D visualizations, gradients, double and triple integrals. Built with Python and Streamlit.', github: 'https://github.com/StevenInsuasti/AplicativoMultivariable', demo: 'https://aplicativomultivariable-proyecto.streamlit.app',
+        detail: { title: 'Multivariable Calculus — Interactive Educational Tool', subtitle: 'Python · Streamlit + SymPy', body: 'Tool for exploring multivariable calculus visually: 3D surfaces, gradients, double/triple integrals and Lagrange optimization. The user enters any function and the app calculates and plots everything in real time — no coding required.', stack: 'Python · Streamlit · SymPy · NumPy · mpmath · Plotly', challenge: 'SymPy cannot always solve complex integrals or limits — it simply fails. I solved it with a two-layer fallback system: it first tries to resolve symbolically, and if it throws an exception, it automatically falls back to numerical evaluation with mpmath. This makes the app robust with any function the user enters, without breaking.' } },
     ],
     code: 'Code', demo: 'Demo', comingSoon: 'Coming soon',
     testimonialsTitle: '06. Testimonials',
@@ -186,7 +198,7 @@ const t = {
     certs: [
       { title: 'Frontend Web Development', issuer: 'Meta / Coursera', date: 'Mar 2024' },
       { title: 'Databases with SQL', issuer: 'Universidad Cooperativa', date: 'Jun 2024' },
-      { title: 'Scrum Fundamentals', issuer: 'ScrumStudy', date: 'Sep 2024' },
+      { title: 'English B2 — Upper Intermediate', issuer: 'Cambridge Academy', date: 'Sep 2024' },
       { title: 'GitLab 101', issuer: 'GitLab University', date: 'Nov 2024' },
       { title: 'Modern JavaScript', issuer: 'Juan Pablo de la Torre — Udemy', date: 'Jan 2025' },
       { title: 'Algorithms & Data Structures in JS', issuer: 'FreeCodeCamp', date: 'Mar 2025' },
@@ -253,33 +265,38 @@ const stackCategories = [
   {
     icon: <Code2 size={20} />,
     title: 'Frontend',
+    desc: { es: 'Interfaces escalables con tipado fuerte, componentes reutilizables y diseño responsivo.', en: 'Scalable interfaces with strong typing, reusable components and responsive design.' },
     items: [
-      { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-      { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
-      { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
-      { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
-      { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
+      { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg', tip: { es: 'Componentes reutilizables y UI dinámica', en: 'Reusable components & dynamic UI' } },
+      { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', tip: { es: 'Apps web con SSR y despliegue en Vercel', en: 'Web apps with SSR & Vercel deploy' } },
+      { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg', tip: { es: 'Tipado estático para código más seguro', en: 'Static typing for safer code' } },
+      { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg', tip: { es: 'Estilos rápidos y consistentes', en: 'Fast & consistent styling' } },
+      { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg', tip: { es: 'Lenguaje base del desarrollo web', en: 'Core language of web development' } },
+      { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg', tip: { es: 'Animaciones y layouts personalizados', en: 'Custom animations & layouts' } },
     ],
   },
   {
     icon: <Database size={20} />,
     title: 'Backend & DB',
+    desc: { es: 'APIs robustas, lógica de negocio eficiente y bases de datos bien estructuradas.', en: 'Robust APIs, efficient business logic and well-structured databases.' },
     items: [
-      { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
-      { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-      { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
-      { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+      { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg', tip: { es: 'APIs REST rápidas con JavaScript', en: 'Fast REST APIs with JavaScript' } },
+      { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg', tip: { es: 'Scripts, automatización y análisis de datos', en: 'Scripts, automation & data analysis' } },
+      { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg', tip: { es: 'Base de datos relacional para producción', en: 'Relational database for production' } },
+      { name: 'Prisma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg', tip: { es: 'ORM moderno para consultas seguras y tipadas', en: 'Modern ORM for safe, typed queries' } },
     ],
   },
   {
     icon: <Globe size={20} />,
     title: 'Tools & DevOps',
+    desc: { es: 'Control de versiones, pruebas de API y despliegue continuo de aplicaciones.', en: 'Version control, API testing and continuous application deployment.' },
     items: [
-      { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
-      { name: 'GitLab', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gitlab/gitlab-original.svg' },
-      { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' },
-      { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg' },
-      { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+      { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg', tip: { es: 'Control de versiones en todos mis proyectos', en: 'Version control across all my projects' } },
+      { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg', tip: { es: 'Repositorios, PRs y colaboración', en: 'Repositories, PRs & collaboration' } },
+      { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg', tip: { es: 'Contenedores para entornos reproducibles', en: 'Containers for reproducible environments' } },
+      { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg', tip: { es: 'Pruebas y documentación de APIs REST', en: 'REST API testing & documentation' } },
+      { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg', tip: { es: 'Editor principal con extensiones clave', en: 'Main editor with key extensions' } },
+      { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg', tip: { es: 'Despliegue automático de apps Next.js', en: 'Automatic deployment of Next.js apps' } },
     ],
   },
 ]
@@ -291,6 +308,7 @@ export default function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [formSent, setFormSent] = useState(false)
+  const [activeDetail, setActiveDetail] = useState<null | { title: string; subtitle: string; body: string; stack: string; challenge: string }>(null)
   const tr = t[lang]
 
   // -- Theme tokens ----------------------------------------------------------
@@ -369,6 +387,35 @@ export default function Portfolio() {
 
   return (
     <div className={`min-h-screen font-sans selection:bg-[#fef08a] ${bg}`}>
+
+      {/* -- Project detail modal -- */}
+      {activeDetail && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 cursor-pointer"
+          onClick={() => setActiveDetail(null)}>
+          <div className={`relative max-w-lg w-full rounded-2xl border-2 p-6 shadow-2xl cursor-default ${dark ? 'bg-[#1a1a1a] border-[#2a2a2a]' : 'bg-white border-[#e5e7eb]'}`}
+            onClick={e => e.stopPropagation()}>
+            <button onClick={() => setActiveDetail(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+              <X size={18} />
+            </button>
+            <p className={`text-xs font-bold uppercase tracking-widest mb-1 ${dark ? 'text-[#888]' : 'text-[#666]'}`}>{activeDetail.subtitle}</p>
+            <h3 className="text-xl font-black mb-3">{activeDetail.title}</h3>
+            {activeDetail.body ? (<>
+            <p className={`text-sm leading-relaxed mb-4 ${dark ? 'text-[#ccc]' : 'text-[#444]'}`}>{activeDetail.body}</p>
+            <div className={`rounded-xl p-3 mb-4 ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1 text-[#6366f1]">Stack</p>
+              <p className={`text-sm font-medium ${dark ? 'text-[#ccc]' : 'text-[#444]'}`}>{activeDetail.stack}</p>
+            </div>
+            <div className={`rounded-xl p-3 ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1 text-[#f59e0b]">{lang === 'es' ? 'Reto Técnico' : 'Technical Challenge'}</p>
+              <p className={`text-sm leading-relaxed ${dark ? 'text-[#ccc]' : 'text-[#444]'}`}>{activeDetail.challenge}</p>
+            </div>
+            </>) : (
+              <p className={`text-sm ${dark ? 'text-[#888]' : 'text-[#666]'}`}>{lang === 'es' ? '✍️ Descripción detallada próximamente.' : '✍️ Detailed description coming soon.'}</p>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* -- Toast -- */}
       {formSent && (
@@ -594,7 +641,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Stack badges */}
-                <div className="mt-3">
+                <div className="mt-3 cursor-pointer" onClick={() => scrollToSection('stack')}>
                   <p className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
                     <span className={`inline-block w-4 h-[2px] ${dark ? 'bg-[#fecaca]' : 'bg-black'}`}/>
                     {lang === 'es' ? 'Stack Principal' : 'Main Stack'}
@@ -608,7 +655,7 @@ export default function Portfolio() {
                       { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
                       { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
                     ].map((tech) => (
-                      <div key={tech.name} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'}`}
+                      <div key={tech.name} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-xl border ${border} ${dark ? 'bg-[#1a1a1a]' : 'bg-white'} transition-all duration-200 hover:scale-105 hover:-translate-y-0.5 hover:shadow-md cursor-default`}
                         style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={tech.icon} alt={tech.name} className="w-6 h-6 object-contain" />
@@ -628,7 +675,7 @@ export default function Portfolio() {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <a href="/cv.pdf" download="CV-Steven-Eraso-Insuasti.pdf"
-                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors ${btn}`}>
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 ${btn}`}>
                       <Download size={15} />{tr.downloadCV}
                     </a>
                     <button onClick={() => scrollToSection('proyectos')}
@@ -652,7 +699,7 @@ export default function Portfolio() {
                       { value: '80%', label: lang === 'es' ? 'Inglés' : 'English', Icon: Star },
                     ].map((stat, i) => (
                       <div key={i}
-                        className="rounded-xl p-2.5 flex items-center justify-between relative overflow-hidden"
+                        className="rounded-xl p-2.5 flex items-center justify-between relative overflow-hidden transition-all duration-200 hover:scale-105 hover:-translate-y-0.5 cursor-default"
                         style={{
                           background: dark
                             ? 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)'
@@ -695,7 +742,7 @@ export default function Portfolio() {
                   <ul className="space-y-3">
                     {tr.profileItems.map((item, i) => (
                       <li key={i} className="flex gap-2 text-sm leading-relaxed">
-                        <ChevronRight size={16} className="mt-0.5 shrink-0 text-black" />
+                        <ChevronRight size={16} className={`mt-0.5 shrink-0 ${dark ? 'text-white' : 'text-black'}`} />
                         <span dangerouslySetInnerHTML={{ __html: item }} />
                       </li>
                     ))}
@@ -726,25 +773,7 @@ export default function Portfolio() {
               </div>
 
               {/* Skills */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Tech skills */}
-                <div className={`rounded-2xl border-2 p-6 ${box}`}>
-                  <h3 className="font-bold mb-5">{tr.techSkills}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {techSkillsList.map((skill) => (
-                      <span key={skill.label}
-                        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold border ${dark ? 'bg-[#1a1a1a] border-[#2a2a2a]' : 'bg-white border-[#e5e7eb]'}`}>
-                        <span className="flex gap-0.5">
-                          {[1,2,3].map(d => (
-                            <span key={d} className={`w-1.5 h-1.5 rounded-full ${d <= skill.level ? 'bg-[#6366f1]' : dark ? 'bg-[#3a3a3a]' : 'bg-[#e5e7eb]'}`} />
-                          ))}
-                        </span>
-                        {skill.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
+              <div className="grid grid-cols-1 gap-8">
                 {/* Soft skills */}
                 <div className={`rounded-2xl border-2 p-6 ${box} flex flex-col`}>
                   <h3 className="font-bold mb-5">{tr.softSkills}</h3>
@@ -773,18 +802,24 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {stackCategories.map((cat, i) => (
                   <div key={i} className={`rounded-2xl border-2 p-6 ${box}`}>
-                    <div className="flex items-center gap-3 mb-5">
+                    <div className="flex items-center gap-3 mb-2">
                       <div className="w-9 h-9 rounded-lg bg-[#bfdbfe] text-[#0f0f0f] flex items-center justify-center">
                         {cat.icon}
                       </div>
                       <h3 className="font-bold">{cat.title}</h3>
                     </div>
+                    <p className={`text-xs ${muted} mb-4 leading-relaxed`}>{lang === 'es' ? cat.desc.es : cat.desc.en}</p>
                     <div className="grid grid-cols-2 gap-2">
                       {cat.items.map((item) => (
-                        <div key={item.name} className={`flex items-center gap-2 p-2 rounded-xl border ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'}`}>
+                        <div key={item.name} className={`group relative flex items-center gap-2 p-2 rounded-xl border ${border} ${dark ? 'bg-[#0f0f0f]' : 'bg-[#f9fafb]'} transition-all duration-200 hover:scale-105 hover:shadow-md hover:border-[#6366f1] cursor-default`}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={item.icon} alt={item.name} className={`w-6 h-6 shrink-0 ${dark && item.name === 'GitHub' ? 'invert' : ''}`} />
                           <span className="text-xs font-semibold truncate">{item.name}</span>
+                          {/* Tooltip */}
+                          <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-lg text-[10px] font-medium text-white bg-[#0f0f0f] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20 shadow-lg`}>
+                            {lang === 'es' ? item.tip.es : item.tip.en}
+                            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0f0f0f]" />
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -838,6 +873,18 @@ export default function Portfolio() {
                               <ExternalLink size={13} /> {tr.comingSoon}
                             </span>
                         }
+                        {project.detail && (
+                          <div className="relative group ml-auto">
+                            <button
+                              onClick={() => setActiveDetail(project.detail!)}
+                              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border ${border} hover:bg-[#6366f1] hover:text-white hover:border-[#6366f1] transition-colors`}>
+                              <Eye size={13} />
+                            </button>
+                            <span className="absolute bottom-full right-0 mb-1.5 px-2 py-1 rounded-lg text-[10px] font-medium text-white bg-[#0f0f0f] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                              {lang === 'es' ? 'Ver detalles' : 'View details'}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
